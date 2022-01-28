@@ -1,1 +1,4 @@
 /venv
+private_key.pem
+public_key.pem
+pwd_hash.pem

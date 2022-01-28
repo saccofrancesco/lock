@@ -9,6 +9,7 @@ from rich.progress import track
 from rich.table import Table
 import time
 import hashlib
+import os
 
 # Creating the Class
 class Database:
@@ -34,13 +35,13 @@ class Database:
         self.connection.commit()
 
         # Reading the Keys and save them to a self. Variable
-        with open("private_key.pem", "rb") as key_file:
+        with open(os.environ.get("PRIVATE_KEY"), "rb") as key_file:
             self.private_key = serialization.load_pem_private_key(
                 key_file.read(),
                 password=None,
                 backend=default_backend()
             )
-        
+
         with open("public_key.pem", "rb") as key_file:
             self.public_key = serialization.load_pem_public_key(
                 key_file.read(),
@@ -48,8 +49,7 @@ class Database:
             )
 
         # Reading the Password and save it to a self. Variable
-        with open("master.key", "r") as f:
-            self.master_pwd = f.read()
+        self.master_pwd = os.environ.get("PASSWORD_HASH")
 
         # Saving a Console Instance for Class' Pretty Printing
         self.console = Console()

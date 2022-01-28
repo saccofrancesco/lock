@@ -20,17 +20,23 @@ private_key = rsa.generate_private_key(
 # Generate the Public Key form the already Created Private Key
 public_key = private_key.public_key()
 
-# Type Casting the generated Keys
-private_key = private_key.private_bytes(
+# Storing th Keys
+pem = private_key.private_bytes(
     encoding=serialization.Encoding.PEM,
     format=serialization.PrivateFormat.PKCS8,
     encryption_algorithm=serialization.NoEncryption()
-).decode()
+)
 
-public_key = public_key.public_bytes(
+with open('private_key.pem', 'wb') as f:
+    f.write(pem)
+
+pem = public_key.public_bytes(
     encoding=serialization.Encoding.PEM,
     format=serialization.PublicFormat.SubjectPublicKeyInfo
-).decode()
+)
+
+with open('public_key.pem', 'wb') as f:
+    f.write(pem)
 
 # Animation
 console = Console()
@@ -65,16 +71,5 @@ time.sleep(0.75)
 # Hashing the Password
 h_pwd = hashlib.sha512(pwd).hexdigest()
 
-# Disaalowed Characters in String Formatting
-chars = "-----BEGIN PRIVATE KEY----------END PRIVATE KEY----------BEGIN PUBLIC KEY----------END PUBLIC KEY-----\n"
-
-# Keys Formatting for Easiest Copying
-for char in chars:
-    private_key = private_key.replace(char, "")
-    public_key = public_key.replace(char, "")
-
-# Opening the file and save the Keys
-with open(".key", "w") as f:
-    f.write(f"-----BEGIN PRIVATE KEY-----\n{private_key}\n-----END PRIVATE KEY-----\n\n")
-    f.write(f"-----BEGIN PUBLIC KEY-----\n{public_key}\n-----END PUBLIC KEY-----\n\n")
-    f.write(f"-----BEGIN PASSWORD HASH-----\n{h_pwd}\n-----END PASSWORD HASH-----")
+with open("pwd_hash.pem", "w") as f:
+    f.write(h_pwd)
