@@ -56,5 +56,15 @@ export PRIVATE_KEY="Path to the private_key.pem file"
 export PASSWORD_HASH="The Hash of the Password"
 ```
 
+Now, To load the new environment variables into the current shell session use the source command:
+```
+source .bash_profile
+```
+
+## Folder Clean Up
+If you followed all the previus steps and understand how this program works, you can clean your cloned folder too look like this:
+
+![cleaned_folder_example](img/cleaned_folder.png)
+
 # Start the Program
 Now you have only to start the program and you will have a nice command-line interface to store, update and delete your passwords. You can also search your passwords and list them by various Options. Follow the Commands' instructions and you won't face any problems. **Happy Encryption!**
