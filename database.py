@@ -227,4 +227,58 @@ class Database:
         # Returning the Result of the Comaprison with the right Master Password
         return self.state
 
-    
+    # Displaying Command Option in a Menu and Getting a User input
+    def menu(self, state: bool) -> int:
+
+        # Checking if Loged In
+        if state:
+
+            # Printing Out the Menu
+            self.console.print("[red]###################################[/red]")
+            self.console.print("[red]Cryptographied Password Manager[/red]")
+            self.console.print("[red]###################################[/red]")
+            self.console.print("[blue]Available Commands:[/blue]")
+            self.console.print("[green]1. Create a New Password[/green]")
+            self.console.print("[yellow]2. Update a Password[/yellow]")
+            self.console.print("[red]3. Delete a Password[/red]")
+            self.console.print("[blue]4. Search a Password by URL or Service[/blue]")
+            self.console.print("[blue]5. List Passwords by Email or Username[/blue]")
+            self.console.print("[yellow]6. Exit the Program[/yellow]")
+            self.console.print("[red]----------------------------------------[/red]")
+
+            # Input Loop
+            while True:
+
+                # Getting User Input
+                dec = int(self.console.input("[blue]Enter a Command :right_arrow:[/blue]  "))
+                print()
+
+                # Verifying if the Command entered is Valid
+                if dec == 1 or dec == 2 or dec == 3 or dec == 4 or dec == 5 or dec == 6: 
+                    break
+
+                else:
+
+                    # Printing Command's Error
+                    self.console.print("[red]:x: Command NOT available![/red]")
+                    print()
+
+                    # Redo the Input Loop
+                    continue
+            
+            # Returning the Command Decision
+            return dec
+
+        else:
+
+            # Exiting Message
+            self.console.print("[red]Wrong Password!!![/red]")
+
+            # Committing any possible Changes
+            self.connection.commit()
+
+            # Closing the Connection
+            self.connection.close()
+
+            # Exiting Completly the Program
+            exit()
