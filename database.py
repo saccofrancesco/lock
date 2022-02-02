@@ -47,3 +47,6 @@ class Database:
                 key_file.read(),
                 backend=default_backend()
             )
+
+        # Reading the Password and save it to a self. Variable
+        self.master_pwd = os.environ.get("PASSWORD_HASH")
