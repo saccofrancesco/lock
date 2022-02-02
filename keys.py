@@ -52,3 +52,13 @@ time.sleep(0.75)
 
 # Getting the Future Master Password
 pwd = console.input("[blue]Enter the Future Master Password :right_arrow:[/blue]  ").encode()
+
+# Velocity of the Progress Bar
+i = 10
+
+# Progres Bar Animation
+for _ in track(range(i), description="[green]Processing...[/green]"):
+    time.sleep(0.2)
+with console.status(":unlock: [blue]Hashing the Password...[/blue]"):
+    time.sleep(3)
+
