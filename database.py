@@ -23,3 +23,10 @@ class Database:
         # Initialize Global Class' Variables
         self.connection = sqlite3.connect("database.db")
         self.cursor = self.connection.cursor()
+
+        # Create the Database Table, if not already existing
+        self.cursor.execute("""CREATE TABLE IF NOT EXISTS passwords (password blob,
+                                                                     email text,
+                                                                     username text,
+                                                                     url text,
+                                                                     app text)""")
