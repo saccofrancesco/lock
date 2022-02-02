@@ -10,3 +10,7 @@ from rich.table import Table
 import time
 import hashlib
 import os
+
+# Creating the Class
+class Database:
+    pass
