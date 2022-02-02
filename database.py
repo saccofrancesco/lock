@@ -33,3 +33,11 @@ class Database:
         
         # Committing the Table
         self.connection.commit()
+
+        # Reading the Keys and save them to a self. Variable
+        with open(os.environ.get("PRIVATE_KEY"), "rb") as key_file:
+            self.private_key = serialization.load_pem_private_key(
+                key_file.read(),
+                password=None,
+                backend=default_backend()
+            )
