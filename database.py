@@ -50,3 +50,6 @@ class Database:
 
         # Reading the Password and save it to a self. Variable
         self.master_pwd = os.environ.get("PASSWORD_HASH")
+
+        # Saving a Console Instance for Class' Pretty Printing
+        self.console = Console()
