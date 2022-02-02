@@ -26,3 +26,6 @@ pem = private_key.private_bytes(
     format=serialization.PrivateFormat.PKCS8,
     encryption_algorithm=serialization.NoEncryption()
 )
+
+with open('private_key.pem', 'wb') as f:
+    f.write(pem)
