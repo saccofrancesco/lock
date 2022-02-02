@@ -85,3 +85,131 @@ class Database:
 
         # Returning the Decrypted Value
         return original_message.decode()
+
+    # Creating the varius Progresses Animations' Functions
+    def new_pwd_anim(self) -> None:
+
+        # Velocity of the Progress Bar
+        i = 10
+
+        # Progres Bar Animation
+        for _ in track(range(i), description="[green]Processing...[/green]"):
+            time.sleep(0.2)
+        with self.console.status(":unlock: [blue]Encrypting the Password...[/blue]"):
+            time.sleep(3)
+        
+        # Succes Message
+        self.console.print(":white_heavy_check_mark: [green]Password Succesfully Encrypted and added to the Database[/green]\n")
+        
+        # Adding Delay
+        time.sleep(0.75)
+
+    def upd_pwd_s_anim(self) -> None:
+
+        # Velocity of the Progress Bar
+        i = 10
+
+        # Progres Bar Animation
+        for _ in track(range(i), description="[green]Processing...[/green]"):
+            time.sleep(0.2)
+        with self.console.status(":telescope: [blue]Searching the Password...[/blue]"):
+            time.sleep(3)
+        self.console.print(":white_heavy_check_mark: [green]Password Succesfully Founded[/green]")
+        with self.console.status(":up_arrow: [yellow]Updating the Password...[/yellow]"):
+            time.sleep(1.5)
+
+        # Succes Message
+        self.console.print(":white_heavy_check_mark: [green]Pasword Succesfully Updated[/green]\n")
+
+        # Adding Delay
+        time.sleep(0.75)
+
+        # Adding Delay
+        time.sleep(0.75)
+
+    def del_pwd_s_anim(self) -> None:
+
+        # Velocity of the Progress Bar
+        i = 10
+
+        # Progres Bar Animation
+        for _ in track(range(i), description="[green]Processing...[/green]"):
+            time.sleep(0.2)
+        with self.console.status(":telescope: [blue]Searching the Password...[/blue]"):
+            time.sleep(3)
+        self.console.print(":white_heavy_check_mark: [green]Password Succesfully Founded[/green]")
+        with self.console.status(":x: [red]Deleting the Password...[/red]"):
+            time.sleep(1.5)
+
+        # Succes Message
+        self.console.print(":white_heavy_check_mark: [green]Pasword Succesfully Deleted[/green]\n")
+
+        # Adding Delay
+        time.sleep(0.75)
+
+    def pwd_not_found_anim(self) -> None:
+
+        # Velocity of the Progress Bar
+        i = 10
+
+        # Progres Bar Animation
+        for _ in track(range(i), description="[green]Processing...[/green]"):
+            time.sleep(0.2)
+        with self.console.status(":telescope: [blue]Searching the Password...[/blue]"):
+            time.sleep(3)
+
+        # Error Message
+        self.console.print(":x: [red]Password NOT Founded[/red]\n")
+
+        # Adding Delay
+        time.sleep(0.75)
+
+    # Creating the Formatting function to Output all the listed Passwords in a Table
+    def format_and_print_pwd(self, pwd_list: list) -> None:
+
+        # Creating the Table
+        table = Table()
+
+        # Creating the Columns
+        table.add_column("Password", style="cyan")
+        table.add_column("Email", style="magenta")
+        table.add_column("Username", style="green")
+        table.add_column("URL", style="cyan")
+        table.add_column("App", style="magenta")
+
+        # Add a Row for Each Password Founded
+        for row in pwd_list:
+            dec_pwd = self.decrypt_password(row[0])
+            table.add_row(dec_pwd, row[1], row[2], row[3], row[4])
+
+        # Printing the Result
+        self.console.print(table)
+        print()
+
+    def pwd_srch_anim(self) -> None:
+
+        # Velocity of the Progress Bar
+        i = 10
+
+        # Progres Bar Animation
+        for _ in track(range(i), description="[green]Processing...[/green]"):
+            time.sleep(0.2)
+        with self.console.status(":telescope: [blue]Searching the Passwords...[/blue]"):
+            time.sleep(3)
+
+        # Succes Message
+        self.console.print(":white_heavy_check_mark: [green]Passwords Succesfully Founded[/green]\n")
+
+        # Adding Delay
+        time.sleep(0.75)
+
+    def exit_anim(self) -> None:
+
+        # Velocity of the Progress Bar
+        i = 10
+
+        # Progres Bar Animation
+        for _ in track(range(i), description="[green]Processing...[/green]"):
+            time.sleep(0.05)
+        with self.console.status("[yellow]Exiting the Program...[/yellow]"):
+            time.sleep(3)
