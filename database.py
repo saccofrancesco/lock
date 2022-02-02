@@ -30,3 +30,6 @@ class Database:
                                                                      username text,
                                                                      url text,
                                                                      app text)""")
+        
+        # Committing the Table
+        self.connection.commit()
