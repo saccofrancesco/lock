@@ -19,3 +19,10 @@ private_key = rsa.generate_private_key(
 
 # Generate the Public Key form the already Created Private Key
 public_key = private_key.public_key()
+
+# Storing th Keys
+pem = private_key.private_bytes(
+    encoding=serialization.Encoding.PEM,
+    format=serialization.PrivateFormat.PKCS8,
+    encryption_algorithm=serialization.NoEncryption()
+)
