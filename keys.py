@@ -37,3 +37,6 @@ pem = public_key.public_bytes(
 
 with open('public_key.pem', 'wb') as f:
     f.write(pem)
+
+# Animation
+console = Console()
