@@ -43,3 +43,6 @@ console = Console()
 
 with console.status(":unlock: [blue]Creating the Keys...[/blue]"):
     time.sleep(3)
+
+# Succes Message
+console.print(":white_heavy_check_mark: [green]Keys Succesfully Created and Stored[/green]\n")
