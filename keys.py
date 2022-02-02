@@ -8,3 +8,11 @@ from rich.console import Console
 from rich.progress import track
 import time
 import hashlib
+
+# Run this File and then Delete It
+# Generate the Private Key
+private_key = rsa.generate_private_key(
+    public_exponent=65537,
+    key_size=2048,
+    backend=default_backend()
+)
