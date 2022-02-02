@@ -348,3 +348,42 @@ class Database:
 
             # Error Animation
             self.pwd_not_found_anim()
+
+    # Create the Method for Deleting an existing Password
+    def delete_password(self) -> None:
+        
+        # Getting User Input
+        pwd = self.console.input("Enter the Password :right_arrow:  ")
+        email = self.console.input("Enter the Email :right_arrow:  ")
+        username = self.console.input("Enter the Username :right_arrow:  ")
+        url = self.console.input("Enter the Application's URL :right_arrow:  ")
+        app = self.console.input("Enter the Service :right_arrow:  ")
+        print()
+
+        # Searching in ALL the Password the ONE which corrispond to te Password Inputed
+        self.cursor.execute("SELECT * FROM passwords WHERE email=? AND username=? AND url=? AND app=?", (email, username, url, app))
+        password_list = self.cursor.fetchall()
+
+        # Checking if the List is not Empty
+        if password_list:
+            
+            # Saving the Pre Encrypted Password
+            pre_enc_pwd = password_list[0][0]
+
+            # Checking if the Encrypted Password Correspond to the One Given and then Updating
+            if self.decrypt_password(pre_enc_pwd) == pwd:
+
+                # Perform the SQL Command via Cursor
+                self.cursor.execute("DELETE from passwords WHERE password=? AND email=? AND username=? AND url=? AND app=?", 
+                                   (pre_enc_pwd, email, username, url, app))
+
+                # Commiting the Changes
+                self.connection.commit()
+
+                # Delete Animation
+                self.del_pwd_s_anim()
+
+        else:
+
+            # Error Animation
+            self.pwd_not_found_anim()
