@@ -387,3 +387,97 @@ class Database:
 
             # Error Animation
             self.pwd_not_found_anim()
+
+    # Create the Searching Method, to filter Password by URL or Service Name (App)
+    def search_passwords(self) -> None:
+
+        # Getting User Input
+        self.console.print("[green]Options Available:[/green]")
+        self.console.print("[blue]1. By URL[/blue]")
+        self.console.print("[blue]2. By Service[/blue]")
+        self.console.print("[yellow]3. Exit this Command[/yellow]")
+        print()
+
+        # Input Loop
+        while True:
+
+            # Getting User Input
+            option = int(self.console.input("[blue]Enter a Command :right_arrow:[/blue]  "))
+            print()
+
+            # Verifying if the Command entered is Valid
+            if option == 1 or 2 or 3: 
+                break
+
+            else:
+
+                # Printing Command's Error
+                self.console.print(":x: [red]Command NOT Valid![/red]")
+                print()
+
+                # Redo the Input Loop
+                continue
+
+        # Creating a Variable to store ALL the Passwords founded
+        password_list = []
+
+        # Handling By URL Option
+        if option == 1:
+            
+            # Getting User Input
+            search = self.console.input("[blue]Enter the Service's URL :right_arrow:[/blue]  ")
+            print()
+
+            # Querying the Password
+            self.cursor.execute("SELECT * FROM passwords WHERE url=?", (search,))
+
+            # Saving All the Password founded with the Specified URL
+            password_list = self.cursor.fetchall()
+
+            # Checking if the List is not Empty
+            if password_list:
+
+                # Animate the Searching Process
+                self.pwd_srch_anim()
+
+                # Using the Prettier to format the founded Passwords in a Table
+                self.format_and_print_pwd(password_list)
+            
+            else:
+
+                # Printing an Error Message
+                self.pwd_not_found_anim()
+
+        # Handling By Service Name (App) Option
+        elif option == 2:
+
+            # Getting User Input
+            search = self.console.input("[blue]Enter the Service's Name :right_arrow:[/blue]  ")
+            print()
+
+            # Querying the Password
+            self.cursor.execute("SELECT * FROM passwords WHERE app=?", (search,))
+
+            # Saving All the Password founded with the Specified Service Name (App)
+            password_list = self.cursor.fetchall()
+
+            # Checking if the List is not Empty
+            if password_list:
+
+                # Animate the Searching Process
+                self.pwd_srch_anim()
+
+                # Using the Prettier to format the founded Passwords in a Table
+                self.format_and_print_pwd(password_list)
+
+            else:
+                
+                # Printing an Error Message
+               self.pwd_not_found_anim()
+        
+        # Handling the Exit Case
+        elif option == 3:
+
+            # Exit Message
+            self.console.print("[yellow]Exiting the Command[/yellow]")
+            print()
