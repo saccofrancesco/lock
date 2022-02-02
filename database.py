@@ -573,3 +573,46 @@ class Database:
             # Exit Message
             self.console.print("[yellow]Exiting the Command[/yellow]")
             print()
+
+    # Defining a Handler for the Menu's Input
+    def input_handler(self, dec: int) -> None:
+
+        # Handling Menu Valid Cases
+        if dec == 1:
+
+            # Running the New Password Function
+            self.create_new_password()
+
+        elif dec == 2:
+
+            # Running the Update Password Function
+            self.update_password()
+
+        elif dec == 3:
+
+            # Running the Delete Password Fucntion
+            self.delete_password()
+
+        elif dec == 4:
+
+            # Running the Search Password/s Function
+            self.search_passwords()
+
+        elif dec == 5:
+
+            # Runnig the Password Lister Function
+            self.passwords_lister()
+
+        elif dec == 6:
+            
+            # Exiting Message
+            self.console.print("[yellow]Exiting the Program...[/yellow]")
+
+            # Committing ANY possible Changes
+            self.connection.commit()
+
+            # Closing the Connection
+            self.connection.close()
+
+            # Complitely Exiting the Program
+            exit()
