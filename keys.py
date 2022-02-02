@@ -62,3 +62,5 @@ for _ in track(range(i), description="[green]Processing...[/green]"):
 with console.status(":unlock: [blue]Hashing the Password...[/blue]"):
     time.sleep(3)
 
+# Succes Message
+console.print(":white_heavy_check_mark: [green]Password Succesfully Hashed and Stored[/green]\n")
