@@ -46,3 +46,9 @@ with console.status(":unlock: [blue]Creating the Keys...[/blue]"):
 
 # Succes Message
 console.print(":white_heavy_check_mark: [green]Keys Succesfully Created and Stored[/green]\n")
+
+# Adding Delay
+time.sleep(0.75)
+
+# Getting the Future Master Password
+pwd = console.input("[blue]Enter the Future Master Password :right_arrow:[/blue]  ").encode()
