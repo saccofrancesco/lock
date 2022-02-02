@@ -69,3 +69,19 @@ class Database:
 
         # Returning the Encrypted Value
         return encrypted
+
+    # Creating the Decryption Method to Decrypt any Encrypted Password with the same Private Key
+    def decrypt_password(self, encrypted: bytes) -> str:
+        
+        # Decrypting the Given Encrypted Password with the Private Key
+        original_message = self.private_key.decrypt(
+            encrypted,
+            padding.OAEP (
+                mgf = padding.MGF1(algorithm = hashes.SHA256()),
+                algorithm = hashes.SHA256(),
+                label = None
+            )
+        )
+
+        # Returning the Decrypted Value
+        return original_message.decode()
