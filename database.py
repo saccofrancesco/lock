@@ -616,3 +616,21 @@ class Database:
 
             # Complitely Exiting the Program
             exit()
+
+# Defining the Running Main Instance
+if __name__ == "__main__":
+
+    # Create a New Database Instance
+    db = Database()
+
+    # Perform the Login
+    state = db.get_master_password()
+
+    # Creating the Program's Loop
+    while True:
+
+        # Printing, if Loged In, the Menu and returning the User's Input
+        dec = db.menu(state)
+
+        # Handling the User's Input
+        db.input_handler(dec)
