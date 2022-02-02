@@ -282,3 +282,26 @@ class Database:
 
             # Exiting Completly the Program
             exit()
+
+    # Create the Method for a New Password
+    def create_new_password(self) -> None:
+
+        # Getting User Input
+        pwd = self.console.input("Enter the Password :right_arrow:  ")
+        email = self.console.input("Enter the Email :right_arrow:  ")
+        username = self.console.input("Enter the Username (if available) :right_arrow:  ")
+        url = self.console.input("Enter the Application's URL (if available) :right_arrow:  ")
+        app = self.console.input("Enter the Service you are using :right_arrow:  ")
+        print()
+
+        # Encrypting the Password
+        enc_pwd = self.encrypt_password(pwd)
+
+        # Perform the SQL Command via Cursor
+        self.cursor.execute("INSERT INTO passwords VALUES (?, ?, ?, ?, ?)", (enc_pwd, email, username, url, app))
+
+        # Commiting the Changes
+        self.connection.commit()
+
+        # Creation Animation
+        self.new_pwd_anim()
