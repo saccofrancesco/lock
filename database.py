@@ -305,3 +305,46 @@ class Database:
 
         # Creation Animation
         self.new_pwd_anim()
+
+    # Create the Method for Updating an existing Password
+    def update_password(self) -> None:
+
+        # Getting User Input
+        pwd = self.console.input("Enter the Password :right_arrow:  ")
+        email = self.console.input("Enter the Password's Email :right_arrow:  ")
+        username = self.console.input("Enter the Password's Username :right_arrow:  ")
+        url = self.console.input("Enter the Password's Application URL :right_arrow:  ")
+        app = self.console.input("Enter the Password's Service Name :right_arrow:  ")
+        new_pwd = self.console.input("\nEnter the New Password :right_arrow:  ")
+        print()
+
+        # Encrypting the New Password
+        new_enc_pwd = self.encrypt_password(new_pwd)
+
+        # Searching in ALL the Password the ONE which corrispond to te Password Inputed
+        self.cursor.execute("SELECT * FROM passwords WHERE email=? AND username=? AND url=? AND app=?", (email, username, url, app))
+        password_list = self.cursor.fetchall()
+
+        # Checking if the List is not Empty
+        if password_list:
+
+            # Saving the Pre Encrypted Password
+            pre_enc_pwd = password_list[0][0]
+
+            # Checking if the Encrypted Password Correspond to the One Given and then Updating
+            if self.decrypt_password(pre_enc_pwd) == pwd:
+
+                # Updating the Password via SQL Cursor Command 
+                self.cursor.execute("UPDATE passwords SET password=? WHERE password=? AND email=? AND username=? AND url=? AND app=?", 
+                                   (new_enc_pwd, pre_enc_pwd, email, username, url, app))
+
+                # Commiting the Changes
+                self.connection.commit()
+
+                # Update Animation
+                self.upd_pwd_s_anim()
+            
+        else:
+
+            # Error Animation
+            self.pwd_not_found_anim()
