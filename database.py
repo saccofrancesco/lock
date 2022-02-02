@@ -13,7 +13,7 @@ import os
 
 # Creating the Class
 class Database:
-    
+
     # Defining the Constructor
     def __init__(self) -> None:
 
@@ -30,7 +30,7 @@ class Database:
                                                                      username text,
                                                                      url text,
                                                                      app text)""")
-        
+
         # Committing the Table
         self.connection.commit()
 
@@ -203,6 +203,23 @@ class Database:
         # Adding Delay
         time.sleep(0.75)
 
+    def pwd_fetch_anim(self) -> None:
+
+        # Velocity of the Progress Bar
+        i = 10
+
+        # Progres Bar Animation
+        for _ in track(range(i), description="[green]Processing...[/green]"):
+            time.sleep(0.2)
+        with self.console.status(":telescope: [blue]Fetching all the Passwords...[/blue]"):
+            time.sleep(3)
+
+        # Succes Message
+        self.console.print(":white_heavy_check_mark: [green]Passwords Succesfully Founded[/green]\n")
+
+        # Adding Delay
+        time.sleep(0.75)
+
     def exit_anim(self) -> None:
 
         # Velocity of the Progress Bar
@@ -243,18 +260,19 @@ class Database:
             self.console.print("[red]3. Delete a Password[/red]")
             self.console.print("[blue]4. Search a Password by URL or Service[/blue]")
             self.console.print("[blue]5. List Passwords by Email or Username[/blue]")
-            self.console.print("[yellow]6. Exit the Program[/yellow]")
+            self.console.print("[green]6. Fetch All the Passwords[/green]")
+            self.console.print("[yellow]7. Exit the Program[/yellow]")
             self.console.print("[red]----------------------------------------[/red]")
 
             # Input Loop
             while True:
 
                 # Getting User Input
-                dec = int(self.console.input("[blue]Enter a Command :right_arrow:[/blue]  "))
+                dec = self.console.input("[blue]Enter a Command :right_arrow:[/blue]  ")
                 print()
 
-                # Verifying if the Command entered is Valid
-                if dec == 1 or dec == 2 or dec == 3 or dec == 4 or dec == 5 or dec == 6: 
+                if dec == "1" or dec == "2" or dec == "3" or dec == "4" or dec == "5" or dec == "6" or dec == "7":
+
                     break
 
                 else:
@@ -262,12 +280,9 @@ class Database:
                     # Printing Command's Error
                     self.console.print("[red]:x: Command NOT available![/red]")
                     print()
-
-                    # Redo the Input Loop
-                    continue
             
             # Returning the Command Decision
-            return dec
+            return int(dec)
 
         else:
 
@@ -402,11 +417,12 @@ class Database:
         while True:
 
             # Getting User Input
-            option = int(self.console.input("[blue]Enter a Command :right_arrow:[/blue]  "))
+            option = self.console.input("[blue]Enter a Command :right_arrow:[/blue]  ")
             print()
 
             # Verifying if the Command entered is Valid
-            if option == 1 or 2 or 3: 
+            if option == "1" or option == "2" or option == "3":
+
                 break
 
             else:
@@ -414,15 +430,13 @@ class Database:
                 # Printing Command's Error
                 self.console.print(":x: [red]Command NOT Valid![/red]")
                 print()
-
-                # Redo the Input Loop
                 continue
 
         # Creating a Variable to store ALL the Passwords founded
         password_list = []
 
         # Handling By URL Option
-        if option == 1:
+        if option == "1":
             
             # Getting User Input
             search = self.console.input("[blue]Enter the Service's URL :right_arrow:[/blue]  ")
@@ -449,7 +463,7 @@ class Database:
                 self.pwd_not_found_anim()
 
         # Handling By Service Name (App) Option
-        elif option == 2:
+        elif option == "2":
 
             # Getting User Input
             search = self.console.input("[blue]Enter the Service's Name :right_arrow:[/blue]  ")
@@ -476,7 +490,7 @@ class Database:
                self.pwd_not_found_anim()
         
         # Handling the Exit Case
-        elif option == 3:
+        elif option == "3":
 
             # Exit Message
             self.console.print("[yellow]Exiting the Command[/yellow]")
@@ -496,11 +510,12 @@ class Database:
         while True:
 
             # Getting User Input
-            option = int(self.console.input("[blue]Enter a Command :right_arrow:[/blue]  "))
+            option = self.console.input("[blue]Enter a Command :right_arrow:[/blue]  ")
             print()
 
             # Verifying if the Command entered is Valid
-            if option == 1 or 2 or 3:
+            if option == "1" or option == "2" or option == "3":
+                
                 break
 
             else:
@@ -514,7 +529,7 @@ class Database:
         password_list = []
 
         # Handling By Email Option
-        if option == 1:
+        if option == "1":
 
             # Getting User Input
             search = self.console.input("[blue]Enter the Account's Email :right_arrow:[/blue]  ")
@@ -541,7 +556,7 @@ class Database:
                 self.pwd_not_found_anim()
 
         # Handling By Username Option
-        elif option == 2:
+        elif option == "2":
 
             # Getting User Input
             search = self.console.input("[blue]Enter the Account's Username :right_arrow:[/blue]  ")
@@ -568,11 +583,34 @@ class Database:
                 self.pwd_not_found_anim()
 
         # Handling the Exit Case
-        elif option == 3:
+        elif option == "3":
 
             # Exit Message
             self.console.print("[yellow]Exiting the Command[/yellow]")
             print()
+
+    # Defining the Fetch All method, to see ALL the Passwords in the Database
+    def fetch_all_passwords(self) -> None:
+        
+        # Querying all the Passwords
+        self.cursor.execute("SELECT * FROM passwords")
+
+        # Saving All the Passwords
+        password_list = self.cursor.fetchall()
+
+        # Checking if the List is not Empty
+        if password_list:
+
+            # Animate the Searching Process
+            self.pwd_fetch_anim()
+
+            # Using the Prettier to format the founded Passwords in a Table
+            self.format_and_print_pwd(password_list)
+        
+        else:
+
+            # Printing an Error Message
+            self.pwd_not_found_anim()
 
     # Defining a Handler for the Menu's Input
     def input_handler(self, dec: int) -> None:
@@ -604,6 +642,11 @@ class Database:
             self.passwords_lister()
 
         elif dec == 6:
+
+            # Running the Password Fetch All Function
+            self.fetch_all_passwords()
+
+        elif dec == 7:
             
             # Exiting Message
             self.console.print("[yellow]Exiting the Program...[/yellow]")
