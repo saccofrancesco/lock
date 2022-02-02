@@ -34,3 +34,6 @@ pem = public_key.public_bytes(
     encoding=serialization.Encoding.PEM,
     format=serialization.PublicFormat.SubjectPublicKeyInfo
 )
+
+with open('public_key.pem', 'wb') as f:
+    f.write(pem)
