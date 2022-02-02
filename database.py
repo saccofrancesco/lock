@@ -53,3 +53,19 @@ class Database:
 
         # Saving a Console Instance for Class' Pretty Printing
         self.console = Console()
+
+    # Creating the Encryption Method to Encrypt any given Password with the same Public Key
+    def encrypt_password(self, password: bytes) -> bytes:
+
+        # Encrypting the Given Password with the Public Key
+        encrypted = self.public_key.encrypt(
+            password.encode(),
+            padding.OAEP (
+                mgf = padding.MGF1(algorithm = hashes.SHA256()),
+                algorithm = hashes.SHA256(),
+                label = None
+            )
+        )
+
+        # Returning the Encrypted Value
+        return encrypted
