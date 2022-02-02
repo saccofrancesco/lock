@@ -213,3 +213,18 @@ class Database:
             time.sleep(0.05)
         with self.console.status("[yellow]Exiting the Program...[/yellow]"):
             time.sleep(3)
+
+    # Get the Master Password for the Login in the Database
+    def get_master_password(self) -> bool:
+
+        # Getting User Input
+        log_pwd = self.console.input("[blue]Enter the Master Password :right_arrow:[/blue]  ").encode()
+        print()
+
+        # Storing the Comparison
+        self.state = hashlib.sha512(log_pwd).hexdigest() == self.master_pwd
+
+        # Returning the Result of the Comaprison with the right Master Password
+        return self.state
+
+    
