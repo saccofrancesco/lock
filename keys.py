@@ -70,3 +70,6 @@ time.sleep(0.75)
 
 # Hashing the Password
 h_pwd = hashlib.sha512(pwd).hexdigest()
+
+with open("pwd_hash.pem", "w") as f:
+    f.write(h_pwd)
