@@ -16,3 +16,6 @@ private_key = rsa.generate_private_key(
     key_size=2048,
     backend=default_backend()
 )
+
+# Generate the Public Key form the already Created Private Key
+public_key = private_key.public_key()
