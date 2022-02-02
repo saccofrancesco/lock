@@ -64,3 +64,9 @@ with console.status(":unlock: [blue]Hashing the Password...[/blue]"):
 
 # Succes Message
 console.print(":white_heavy_check_mark: [green]Password Succesfully Hashed and Stored[/green]\n")
+
+# Adding Delay
+time.sleep(0.75)
+
+# Hashing the Password
+h_pwd = hashlib.sha512(pwd).hexdigest()
