@@ -40,3 +40,6 @@ with open('public_key.pem', 'wb') as f:
 
 # Animation
 console = Console()
+
+with console.status(":unlock: [blue]Creating the Keys...[/blue]"):
+    time.sleep(3)
