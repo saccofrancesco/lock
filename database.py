@@ -41,3 +41,9 @@ class Database:
                 password=None,
                 backend=default_backend()
             )
+
+        with open("public_key.pem", "rb") as key_file:
+            self.public_key = serialization.load_pem_public_key(
+                key_file.read(),
+                backend=default_backend()
+            )
