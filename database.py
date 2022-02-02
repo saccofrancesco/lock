@@ -13,4 +13,13 @@ import os
 
 # Creating the Class
 class Database:
-    pass
+    
+    # Defining the Constructor
+    def __init__(self) -> None:
+
+        # Login State Variable
+        self.state = False
+
+        # Initialize Global Class' Variables
+        self.connection = sqlite3.connect("database.db")
+        self.cursor = self.connection.cursor()
