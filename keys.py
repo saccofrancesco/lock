@@ -29,3 +29,8 @@ pem = private_key.private_bytes(
 
 with open('private_key.pem', 'wb') as f:
     f.write(pem)
+
+pem = public_key.public_bytes(
+    encoding=serialization.Encoding.PEM,
+    format=serialization.PublicFormat.SubjectPublicKeyInfo
+)
