@@ -481,3 +481,95 @@ class Database:
             # Exit Message
             self.console.print("[yellow]Exiting the Command[/yellow]")
             print()
+
+    # Creating the Method to display passwords with the same Email or Username
+    def passwords_lister(self) -> None:
+
+        # Displaying User Option
+        self.console.print("[green]Options Available:[/green]")
+        self.console.print("[blue]1. By Email[/blue]")
+        self.console.print("[blue]2. By Username[/blue]")
+        self.console.print("[yellow]3. Exit this Command[/yellow]")
+        self.console.print()
+
+        # Input Loop
+        while True:
+
+            # Getting User Input
+            option = int(self.console.input("[blue]Enter a Command :right_arrow:[/blue]  "))
+            print()
+
+            # Verifying if the Command entered is Valid
+            if option == 1 or 2 or 3:
+                break
+
+            else:
+
+                # Printing Command's Error
+                self.console.print(":x: [red]Command NOT Valid![/red]")
+                print()
+                continue
+        
+        # Creating a Variable to store ALL the Passwords founded
+        password_list = []
+
+        # Handling By Email Option
+        if option == 1:
+
+            # Getting User Input
+            search = self.console.input("[blue]Enter the Account's Email :right_arrow:[/blue]  ")
+            print()
+
+            # Querying the Password
+            self.cursor.execute("SELECT * FROM passwords WHERE email=?", (search,))
+
+            # Saving All the Password with the Specific Parameter
+            password_list = self.cursor.fetchall()
+
+            # Checking if the List is not Empty
+            if password_list:
+
+                # Animate the Searching Process
+                self.pwd_srch_anim()
+
+                # Using the Prettier to format the founded Passwords in a Table
+                self.format_and_print_pwd(password_list)
+            
+            else:
+
+                # Printing an Error Message
+                self.pwd_not_found_anim()
+
+        # Handling By Username Option
+        elif option == 2:
+
+            # Getting User Input
+            search = self.console.input("[blue]Enter the Account's Username :right_arrow:[/blue]  ")
+            print()
+
+            # Querying the Password
+            self.cursor.execute("SELECT * FROM passwords WHERE username=?", (search,))
+
+            # Saving All the Password with the Specific Parameter
+            password_list = self.cursor.fetchall()
+
+            # Checking if the List is not Empty
+            if password_list:
+
+                # Animate the Searching Process
+                self.pwd_srch_anim()
+
+                # Using the Prettier to format the founded Passwords in a Table
+                self.format_and_print_pwd(password_list)
+            
+            else:
+
+                # Printing an Error Message
+                self.pwd_not_found_anim()
+
+        # Handling the Exit Case
+        elif option == 3:
+
+            # Exit Message
+            self.console.print("[yellow]Exiting the Command[/yellow]")
+            print()
