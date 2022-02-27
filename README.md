@@ -9,7 +9,7 @@ git clone https://github.com/TonicStark/Cryptographied-Password-Manager.git
 
 Then install the dependencies in a virtualenv, you can create one via `python -m venv <name of the virtualenv>`, with:
 ```
-pip install -r requirments.txt
+pip install -r requirements.txt
 ```
 
 Now, you need to run the `keys.py` file and then **DELETE** it. This file will populate the `public_key.pem`, `private_key.pem` and `pwd_hash.pem` files with personalized text. The first two are your **Public**, **Private Keys**; the third one is the password you've inserted, hashed.

@@ -9,7 +9,7 @@ git clone https://github.com/TonicStark/Cryptographied-Password-Manager.git
 
 Quindi installa le dipendenze in un virtualenv, puoi crearne uno tramite `python -m venv <name of the virtualenv>`, con:
 ```
-pip install -r requirments.txt
+pip install -r requirements.txt
 ```
 
 Ora devi eseguire il file `keys.py` e poi **ELIMINARLO**. Questo file popolerà i file `public_key.pem`, `private_key.pem` e `pwd_hash.pem` con del testo personalizzato. I primi due sono le tue **Chiavi Pubblica e Privata**; il terzo è la password che hai inserito, passata attraverso un HASH.
@@ -21,7 +21,7 @@ Se provi ad accedere al database in altri modi, puoi vedere come le password sia
 ## Personalizzazione
 Ora copia il file `private_key.pem` e incollalo in una cartella difficile da trovare, magari una cartella nel tuo Utente o qualcos'altro. Copia il percorso del file, ad esempio:
 
-![esempio di percorso](img/percorso.png)
+![esempio di percorso](../img/path.png)
 
 In questo caso specifico, il percorso sarà `C:\Users\franc\KEYS\private_key.pem`. Scrivi questo da qualche parte perché avremo bisogno di questo più avanti nella configurazione. Elimina la copia del file `private_key.pem` da questa cartella.
 
@@ -37,11 +37,11 @@ Nella nuova finestra, puoi aggiungere "Nome variabile" e "Valore variabile" e fa
 
 Ora prendi il percorso del file `private_key.pem` e salvalo come **PRIVATE_KEY**, in questo modo:
 
-![key_storing_example](img/private_key.png)
+![key_storing_example](../img/private_key.png)
 
 La stessa cosa, devi fare ora con l'hash. Prendilo e archivialo in una variabile d'ambiente chiamata **PASSWORD_HASH**, in questo modo:
 
-![password_hash_example](img/pwd_hash.png)
+![password_hash_example](../img/pwd_hash.png)
 
 ### Linux o Mac
 Per impostare password o chiavi segrete nelle variabili d'ambiente su Linux (e Mac) devi modificare il file `.bash_profile` che si trova nella tua home directory. Devi aprire il terminale e poi, andare nella directory `home`.
@@ -64,7 +64,7 @@ source .bash_profile
 ## Libera la Cartella
 Se hai seguito tutti i passaggi precedenti e capisci come funziona questo programma, puoi anche pulire la tua cartella clonata, in questo modo:
 
-![cleaned_folder_example](img/cleaned_folder.png)
+![cleaned_folder_example](../img/cleaned_folder.png)
 
 # Avvia il Programma
 Ora devi solo avviare il programma e avrai una bella interfaccia a riga di comando per archiviare, aggiornare ed eliminare le tue password. Puoi anche cercare le tue password ed elencarle in base a varie Opzioni. Segui le istruzioni dei comandi e non avrai problemi. **Buona Crittografazione!**
