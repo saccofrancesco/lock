@@ -57,8 +57,8 @@ class Database:
     # Creating the Encryption Method to Encrypt any given Password with the same Public Key
     def encrypt_password(self, password: bytes) -> bytes:
 
-        # Encrypting the Given Password with the Public Key
-        encrypted = self.public_key.encrypt(
+        # Returning the Encrypted Value
+        return self.public_key.encrypt(
             password.encode(),
             padding.OAEP (
                 mgf = padding.MGF1(algorithm = hashes.SHA256()),
@@ -67,101 +67,56 @@ class Database:
             )
         )
 
-        # Returning the Encrypted Value
-        return encrypted
-
     # Creating the Decryption Method to Decrypt any Encrypted Password with the same Private Key
     def decrypt_password(self, encrypted: bytes) -> str:
         
-        # Decrypting the Given Encrypted Password with the Private Key
-        original_message = self.private_key.decrypt(
+        # Returning the Decrypted Value
+        return self.private_key.decrypt(
             encrypted,
             padding.OAEP (
                 mgf = padding.MGF1(algorithm = hashes.SHA256()),
                 algorithm = hashes.SHA256(),
                 label = None
             )
-        )
-
-        # Returning the Decrypted Value
-        return original_message.decode()
+        ).decode()
 
     # Creating the varius Progresses Animations' Functions
     def new_pwd_anim(self) -> None:
 
-        # Velocity of the Progress Bar
-        i = 10
-
-        # Progres Bar Animation
-        for _ in track(range(i), description="[green]Processing...[/green]"):
-            time.sleep(0.2)
-        with self.console.status(":unlock: [blue]Encrypting the Password...[/blue]"):
-            time.sleep(3)
-        
-        # Succes Message
-        self.console.print(":white_heavy_check_mark: [green]Password Succesfully Encrypted and added to the Database[/green]\n")
-        
-        # Adding Delay
-        time.sleep(0.75)
+        self.pwd_fetch(
+            ":unlock: [blue]Encrypting the Password...[/blue]",
+            ":white_heavy_check_mark: [green]Password Succesfully Encrypted and added to the Database[/green]\n",
+        )
 
     def upd_pwd_s_anim(self) -> None:
 
-        # Velocity of the Progress Bar
-        i = 10
-
-        # Progres Bar Animation
-        for _ in track(range(i), description="[green]Processing...[/green]"):
-            time.sleep(0.2)
-        with self.console.status(":telescope: [blue]Searching the Password...[/blue]"):
-            time.sleep(3)
-        self.console.print(":white_heavy_check_mark: [green]Password Succesfully Founded[/green]")
-        with self.console.status(":up_arrow: [yellow]Updating the Password...[/yellow]"):
-            time.sleep(1.5)
-
-        # Succes Message
-        self.console.print(":white_heavy_check_mark: [green]Pasword Succesfully Updated[/green]\n")
-
-        # Adding Delay
-        time.sleep(0.75)
+        self.del_pwd(
+            ":up_arrow: [yellow]Updating the Password...[/yellow]",
+            ":white_heavy_check_mark: [green]Pasword Succesfully Updated[/green]\n",
+        )
 
         # Adding Delay
         time.sleep(0.75)
 
     def del_pwd_s_anim(self) -> None:
 
-        # Velocity of the Progress Bar
-        i = 10
+        self.del_pwd(
+            ":x: [red]Deleting the Password...[/red]",
+            ":white_heavy_check_mark: [green]Pasword Succesfully Deleted[/green]\n",
+        )
 
-        # Progres Bar Animation
-        for _ in track(range(i), description="[green]Processing...[/green]"):
-            time.sleep(0.2)
-        with self.console.status(":telescope: [blue]Searching the Password...[/blue]"):
-            time.sleep(3)
-        self.console.print(":white_heavy_check_mark: [green]Password Succesfully Founded[/green]")
-        with self.console.status(":x: [red]Deleting the Password...[/red]"):
+    def del_pwd(self, arg0, arg1):
+        self.exit_sequence(
+            0.2, ":telescope: [blue]Searching the Password...[/blue]"
+        )
+
+        self.console.print(
+            ":white_heavy_check_mark: [green]Password Succesfully Founded[/green]"
+        )
+
+        with self.console.status(arg0):
             time.sleep(1.5)
-
-        # Succes Message
-        self.console.print(":white_heavy_check_mark: [green]Pasword Succesfully Deleted[/green]\n")
-
-        # Adding Delay
-        time.sleep(0.75)
-
-    def pwd_not_found_anim(self) -> None:
-
-        # Velocity of the Progress Bar
-        i = 10
-
-        # Progres Bar Animation
-        for _ in track(range(i), description="[green]Processing...[/green]"):
-            time.sleep(0.2)
-        with self.console.status(":telescope: [blue]Searching the Password...[/blue]"):
-            time.sleep(3)
-
-        # Error Message
-        self.console.print(":x: [red]Password NOT Founded[/red]\n")
-
-        # Adding Delay
+        self.console.print(arg1)
         time.sleep(0.75)
 
     # Creating the Formatting function to Output all the listed Passwords in a Table
@@ -186,49 +141,40 @@ class Database:
         self.console.print(table)
         print()
 
+    def pwd_not_found_anim(self) -> None:
+        self.pwd_fetch(
+            ":telescope: [blue]Searching the Password...[/blue]",
+            ":x: [red]Password NOT Founded[/red]\n",
+        )
+
     def pwd_srch_anim(self) -> None:
-
-        # Velocity of the Progress Bar
-        i = 10
-
-        # Progres Bar Animation
-        for _ in track(range(i), description="[green]Processing...[/green]"):
-            time.sleep(0.2)
-        with self.console.status(":telescope: [blue]Searching the Passwords...[/blue]"):
-            time.sleep(3)
-
-        # Succes Message
-        self.console.print(":white_heavy_check_mark: [green]Passwords Succesfully Founded[/green]\n")
-
-        # Adding Delay
-        time.sleep(0.75)
+        self.pwd_fetch(
+            ":telescope: [blue]Searching the Passwords...[/blue]",
+            ":white_heavy_check_mark: [green]Passwords Succesfully Founded[/green]\n",
+        )
 
     def pwd_fetch_anim(self) -> None:
+        self.pwd_fetch(
+            ":telescope: [blue]Fetching all the Passwords...[/blue]",
+            ":white_heavy_check_mark: [green]Passwords Succesfully Founded[/green]\n",
+        )
 
-        # Velocity of the Progress Bar
-        i = 10
-
-        # Progres Bar Animation
-        for _ in track(range(i), description="[green]Processing...[/green]"):
-            time.sleep(0.2)
-        with self.console.status(":telescope: [blue]Fetching all the Passwords...[/blue]"):
-            time.sleep(3)
-
-        # Succes Message
-        self.console.print(":white_heavy_check_mark: [green]Passwords Succesfully Founded[/green]\n")
-
-        # Adding Delay
+    def pwd_fetch(self, arg0, arg1):
+        self.exit_sequence(0.2, arg0)
+        self.console.print(arg1)
         time.sleep(0.75)
 
     def exit_anim(self) -> None:
 
-        # Velocity of the Progress Bar
-        i = 10
+        self.exit_sequence(
+            0.05, "[yellow]Exiting the Program...[/yellow]"
+        )
 
-        # Progres Bar Animation
+    def exit_sequence(self, arg0, arg1):
+        i = 10
         for _ in track(range(i), description="[green]Processing...[/green]"):
-            time.sleep(0.05)
-        with self.console.status("[yellow]Exiting the Program...[/yellow]"):
+            time.sleep(arg0)
+        with self.console.status(arg1):
             time.sleep(3)
 
     # Get the Master Password for the Login in the Database
@@ -250,19 +196,26 @@ class Database:
         # Checking if Loged In
         if state:
 
-            # Printing Out the Menu
-            self.console.print("[red]###################################[/red]")
-            self.console.print("[red]Cryptographied Password Manager[/red]")
-            self.console.print("[red]###################################[/red]")
-            self.console.print("[blue]Available Commands:[/blue]")
-            self.console.print("[green]1. Create a New Password[/green]")
-            self.console.print("[yellow]2. Update a Password[/yellow]")
-            self.console.print("[red]3. Delete a Password[/red]")
-            self.console.print("[blue]4. Search a Password by URL or Service[/blue]")
-            self.console.print("[blue]5. List Passwords by Email or Username[/blue]")
-            self.console.print("[green]6. Fetch All the Passwords[/green]")
-            self.console.print("[yellow]7. Exit the Program[/yellow]")
-            self.console.print("[red]----------------------------------------[/red]")
+            self.option_menu(
+                "[red]###################################[/red]",
+                "[red]Cryptographied Password Manager[/red]",
+                "[red]###################################[/red]",
+                "[blue]Available Commands:[/blue]",
+            )
+
+            self.option_4_list(
+                "[green]1. Create a New Password[/green]",
+                "[yellow]2. Update a Password[/yellow]",
+                "[red]3. Delete a Password[/red]",
+                "[blue]4. Search a Password by URL or Service[/blue]",
+            )
+
+            self.option_4_print(
+                "[blue]5. List Passwords by Email or Username[/blue]",
+                "[green]6. Fetch All the Passwords[/green]",
+                "[yellow]7. Exit the Program[/yellow]",
+                "[red]----------------------------------------[/red]",
+            )
 
             # Input Loop
             while True:
@@ -271,32 +224,19 @@ class Database:
                 dec = self.console.input("[blue]Enter a Command :right_arrow:[/blue]  ")
                 print()
 
-                if dec == "1" or dec == "2" or dec == "3" or dec == "4" or dec == "5" or dec == "6" or dec == "7":
-
+                if dec in ["1", "2", "3", "4", "5", "6", "7"]:
                     break
 
-                else:
+                # Printing Command's Error
+                self.console.print("[red]:x: Command NOT available![/red]")
+                print()
 
-                    # Printing Command's Error
-                    self.console.print("[red]:x: Command NOT available![/red]")
-                    print()
-            
             # Returning the Command Decision
             return int(dec)
 
         else:
 
-            # Exiting Message
-            self.console.print("[red]Wrong Password!!![/red]")
-
-            # Committing any possible Changes
-            self.connection.commit()
-
-            # Closing the Connection
-            self.connection.close()
-
-            # Exiting Completly the Program
-            exit()
+            self.script_exit_message("[red]Wrong Password!!![/red]")
 
     # Create the Method for a New Password
     def create_new_password(self) -> None:
@@ -338,10 +278,7 @@ class Database:
 
         # Searching in ALL the Password the ONE which corrispond to te Password Inputed
         self.cursor.execute("SELECT * FROM passwords WHERE email=? AND username=? AND url=? AND app=?", (email, username, url, app))
-        password_list = self.cursor.fetchall()
-
-        # Checking if the List is not Empty
-        if password_list:
+        if password_list := self.cursor.fetchall():
 
             # Saving the Pre Encrypted Password
             pre_enc_pwd = password_list[0][0]
@@ -358,9 +295,8 @@ class Database:
 
                 # Update Animation
                 self.upd_pwd_s_anim()
-            
-        else:
 
+        else:
             # Error Animation
             self.pwd_not_found_anim()
 
@@ -377,11 +313,8 @@ class Database:
 
         # Searching in ALL the Password the ONE which corrispond to te Password Inputed
         self.cursor.execute("SELECT * FROM passwords WHERE email=? AND username=? AND url=? AND app=?", (email, username, url, app))
-        password_list = self.cursor.fetchall()
+        if password_list := self.cursor.fetchall():
 
-        # Checking if the List is not Empty
-        if password_list:
-            
             # Saving the Pre Encrypted Password
             pre_enc_pwd = password_list[0][0]
 
@@ -399,18 +332,19 @@ class Database:
                 self.del_pwd_s_anim()
 
         else:
-
             # Error Animation
             self.pwd_not_found_anim()
 
     # Create the Searching Method, to filter Password by URL or Service Name (App)
     def search_passwords(self) -> None:
 
-        # Getting User Input
-        self.console.print("[green]Options Available:[/green]")
-        self.console.print("[blue]1. By URL[/blue]")
-        self.console.print("[blue]2. By Service[/blue]")
-        self.console.print("[yellow]3. Exit this Command[/yellow]")
+        self.option_menu(
+            "[green]Options Available:[/green]",
+            "[blue]1. By URL[/blue]",
+            "[blue]2. By Service[/blue]",
+            "[yellow]3. Exit this Command[/yellow]",
+        )
+
         print()
 
         # Input Loop
@@ -420,17 +354,13 @@ class Database:
             option = self.console.input("[blue]Enter a Command :right_arrow:[/blue]  ")
             print()
 
-            # Verifying if the Command entered is Valid
-            if option == "1" or option == "2" or option == "3":
-
+            if option in ["1", "2", "3"]:
                 break
 
-            else:
-
-                # Printing Command's Error
-                self.console.print(":x: [red]Command NOT Valid![/red]")
-                print()
-                continue
+            # Printing Command's Error
+            self.console.print(":x: [red]Command NOT Valid![/red]")
+            print()
+            continue
 
         # Creating a Variable to store ALL the Passwords founded
         password_list = []
@@ -438,58 +368,18 @@ class Database:
         # Handling By URL Option
         if option == "1":
             
-            # Getting User Input
-            search = self.console.input("[blue]Enter the Service's URL :right_arrow:[/blue]  ")
-            print()
+            self.password_message_anim(
+                "[blue]Enter the Service's URL :right_arrow:[/blue]  ",
+                "SELECT * FROM passwords WHERE url=?",
+            )
 
-            # Querying the Password
-            self.cursor.execute("SELECT * FROM passwords WHERE url=?", (search,))
-
-            # Saving All the Password founded with the Specified URL
-            password_list = self.cursor.fetchall()
-
-            # Checking if the List is not Empty
-            if password_list:
-
-                # Animate the Searching Process
-                self.pwd_srch_anim()
-
-                # Using the Prettier to format the founded Passwords in a Table
-                self.format_and_print_pwd(password_list)
-            
-            else:
-
-                # Printing an Error Message
-                self.pwd_not_found_anim()
-
-        # Handling By Service Name (App) Option
         elif option == "2":
 
-            # Getting User Input
-            search = self.console.input("[blue]Enter the Service's Name :right_arrow:[/blue]  ")
-            print()
+            self.password_message_anim(
+                "[blue]Enter the Service's Name :right_arrow:[/blue]  ",
+                "SELECT * FROM passwords WHERE app=?",
+            )
 
-            # Querying the Password
-            self.cursor.execute("SELECT * FROM passwords WHERE app=?", (search,))
-
-            # Saving All the Password founded with the Specified Service Name (App)
-            password_list = self.cursor.fetchall()
-
-            # Checking if the List is not Empty
-            if password_list:
-
-                # Animate the Searching Process
-                self.pwd_srch_anim()
-
-                # Using the Prettier to format the founded Passwords in a Table
-                self.format_and_print_pwd(password_list)
-
-            else:
-                
-                # Printing an Error Message
-               self.pwd_not_found_anim()
-        
-        # Handling the Exit Case
         elif option == "3":
 
             # Exit Message
@@ -499,11 +389,13 @@ class Database:
     # Creating the Method to display passwords with the same Email or Username
     def passwords_lister(self) -> None:
 
-        # Displaying User Option
-        self.console.print("[green]Options Available:[/green]")
-        self.console.print("[blue]1. By Email[/blue]")
-        self.console.print("[blue]2. By Username[/blue]")
-        self.console.print("[yellow]3. Exit this Command[/yellow]")
+        self.option_menu(
+            "[green]Options Available:[/green]",
+            "[blue]1. By Email[/blue]",
+            "[blue]2. By Username[/blue]",
+            "[yellow]3. Exit this Command[/yellow]",
+        )
+
         self.console.print()
 
         # Input Loop
@@ -513,81 +405,63 @@ class Database:
             option = self.console.input("[blue]Enter a Command :right_arrow:[/blue]  ")
             print()
 
-            # Verifying if the Command entered is Valid
-            if option == "1" or option == "2" or option == "3":
-                
+            if option in ["1", "2", "3"]:
                 break
 
-            else:
+            # Printing Command's Error
+            self.console.print(":x: [red]Command NOT Valid![/red]")
+            print()
+            continue
 
-                # Printing Command's Error
-                self.console.print(":x: [red]Command NOT Valid![/red]")
-                print()
-                continue
-        
         # Creating a Variable to store ALL the Passwords founded
         password_list = []
 
         # Handling By Email Option
         if option == "1":
 
-            # Getting User Input
-            search = self.console.input("[blue]Enter the Account's Email :right_arrow:[/blue]  ")
-            print()
+            self.password_message_anim(
+                "[blue]Enter the Account's Email :right_arrow:[/blue]  ",
+                "SELECT * FROM passwords WHERE email=?",
+            )
 
-            # Querying the Password
-            self.cursor.execute("SELECT * FROM passwords WHERE email=?", (search,))
-
-            # Saving All the Password with the Specific Parameter
-            password_list = self.cursor.fetchall()
-
-            # Checking if the List is not Empty
-            if password_list:
-
-                # Animate the Searching Process
-                self.pwd_srch_anim()
-
-                # Using the Prettier to format the founded Passwords in a Table
-                self.format_and_print_pwd(password_list)
-            
-            else:
-
-                # Printing an Error Message
-                self.pwd_not_found_anim()
-
-        # Handling By Username Option
         elif option == "2":
 
-            # Getting User Input
-            search = self.console.input("[blue]Enter the Account's Username :right_arrow:[/blue]  ")
-            print()
+            self.password_message_anim(
+                "[blue]Enter the Account's Username :right_arrow:[/blue]  ",
+                "SELECT * FROM passwords WHERE username=?",
+            )
 
-            # Querying the Password
-            self.cursor.execute("SELECT * FROM passwords WHERE username=?", (search,))
-
-            # Saving All the Password with the Specific Parameter
-            password_list = self.cursor.fetchall()
-
-            # Checking if the List is not Empty
-            if password_list:
-
-                # Animate the Searching Process
-                self.pwd_srch_anim()
-
-                # Using the Prettier to format the founded Passwords in a Table
-                self.format_and_print_pwd(password_list)
-            
-            else:
-
-                # Printing an Error Message
-                self.pwd_not_found_anim()
-
-        # Handling the Exit Case
         elif option == "3":
 
             # Exit Message
             self.console.print("[yellow]Exiting the Command[/yellow]")
             print()
+
+    def option_menu(self, arg0, arg1, arg2, arg3):
+        self.option_4_list(
+            arg0, arg1, arg2, arg3
+        )
+
+    def option_4_list(self, arg0, arg1, arg2, arg3):
+        self.option_4_print(
+            arg0, arg1, arg2, arg3
+        )
+
+    def option_4_print(self, arg0, arg1, arg2, arg3):
+        self.console.print(arg0)
+        self.console.print(arg1)
+        self.console.print(arg2)
+        self.console.print(arg3)
+
+    def password_message_anim(self, arg0, arg1):
+        search = self.console.input(arg0)
+        print()
+        self.cursor.execute(arg1, (search, ))
+        if password_list := self.cursor.fetchall():
+            self.pwd_srch_anim()
+            self.format_and_print_pwd(password_list)
+        else:
+            self.pwd_not_found_anim()
 
     # Defining the Fetch All method, to see ALL the Passwords in the Database
     def fetch_all_passwords(self) -> None:
@@ -595,20 +469,14 @@ class Database:
         # Querying all the Passwords
         self.cursor.execute("SELECT * FROM passwords")
 
-        # Saving All the Passwords
-        password_list = self.cursor.fetchall()
-
-        # Checking if the List is not Empty
-        if password_list:
-
+        if password_list := self.cursor.fetchall():
             # Animate the Searching Process
             self.pwd_fetch_anim()
 
             # Using the Prettier to format the founded Passwords in a Table
             self.format_and_print_pwd(password_list)
-        
-        else:
 
+        else:
             # Printing an Error Message
             self.pwd_not_found_anim()
 
@@ -648,17 +516,16 @@ class Database:
 
         elif dec == 7:
             
-            # Exiting Message
-            self.console.print("[yellow]Exiting the Program...[/yellow]")
+            self.script_exit_message(
+                "[yellow]Exiting the Program...[/yellow]"
+            )
 
-            # Committing ANY possible Changes
-            self.connection.commit()
-
-            # Closing the Connection
-            self.connection.close()
-
-            # Complitely Exiting the Program
-            exit()
+    # TODO Rename this here and in `menu` and `input_handler`
+    def script_exit_message(self, arg0):
+        self.console.print(arg0)
+        self.connection.commit()
+        self.connection.close()
+        exit()
 
 # Defining the Running Main Instance
 if __name__ == "__main__":
