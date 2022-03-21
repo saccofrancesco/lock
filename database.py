@@ -84,15 +84,15 @@ class Database:
     def new_pwd_anim(self) -> None:
 
         self.pwd_fetch(
-            ":unlock: [blue]Encrypting the Password...[/blue]",
-            ":white_heavy_check_mark: [green]Password Succesfully Encrypted and added to the Database[/green]\n",
+            "🔏 [blue]Encrypting the Password...[/blue]",
+            "✅ [green]Password Succesfully Encrypted and added to the Database[/green]\n",
         )
 
     def upd_pwd_s_anim(self) -> None:
 
         self.del_pwd(
-            ":up_arrow: [yellow]Updating the Password...[/yellow]",
-            ":white_heavy_check_mark: [green]Pasword Succesfully Updated[/green]\n",
+            "⬆️ [yellow]Updating the Password...[/yellow]",
+            "✅ [green]Pasword Succesfully Updated[/green]\n",
         )
 
         # Adding Delay
@@ -101,17 +101,17 @@ class Database:
     def del_pwd_s_anim(self) -> None:
 
         self.del_pwd(
-            ":x: [red]Deleting the Password...[/red]",
-            ":white_heavy_check_mark: [green]Pasword Succesfully Deleted[/green]\n",
+            "❌ [red]Deleting the Password...[/red]",
+            "✅ [green]Pasword Succesfully Deleted[/green]\n",
         )
 
     def del_pwd(self, arg0, arg1):
         self.exit_sequence(
-            0.2, ":telescope: [blue]Searching the Password...[/blue]"
+            0.2, "🔭 [blue]Searching the Password...[/blue]"
         )
 
         self.console.print(
-            ":white_heavy_check_mark: [green]Password Succesfully Founded[/green]"
+            "✅ [green]Password Succesfully Founded[/green]"
         )
 
         with self.console.status(arg0):
@@ -143,20 +143,20 @@ class Database:
 
     def pwd_not_found_anim(self) -> None:
         self.pwd_fetch(
-            ":telescope: [blue]Searching the Password...[/blue]",
-            ":x: [red]Password NOT Founded[/red]\n",
+            "🔭 [blue]Searching the Password...[/blue]",
+            "❌ [red]Password NOT Founded[/red]\n",
         )
 
     def pwd_srch_anim(self) -> None:
         self.pwd_fetch(
-            ":telescope: [blue]Searching the Passwords...[/blue]",
-            ":white_heavy_check_mark: [green]Passwords Succesfully Founded[/green]\n",
+            "🔭 [blue]Searching the Passwords...[/blue]",
+            "✅ [green]Passwords Succesfully Founded[/green]\n",
         )
 
     def pwd_fetch_anim(self) -> None:
         self.pwd_fetch(
-            ":telescope: [blue]Fetching all the Passwords...[/blue]",
-            ":white_heavy_check_mark: [green]Passwords Succesfully Founded[/green]\n",
+            "🔭 [blue]Fetching all the Passwords...[/blue]",
+            "✅ [green]Passwords Succesfully Founded[/green]\n",
         )
 
     def pwd_fetch(self, arg0, arg1):
@@ -181,7 +181,7 @@ class Database:
     def get_master_password(self) -> bool:
 
         # Getting User Input
-        log_pwd = self.console.input("[blue]Enter the Master Password :right_arrow:[/blue]  ").encode()
+        log_pwd = self.console.input("[blue]Enter the Master Password ➡️[/blue]  ").encode()
         print()
 
         # Storing the Comparison
@@ -221,14 +221,14 @@ class Database:
             while True:
 
                 # Getting User Input
-                dec = self.console.input("[blue]Enter a Command :right_arrow:[/blue]  ")
+                dec = self.console.input("[blue]Enter a Command ➡️[/blue]  ")
                 print()
 
                 if dec in ["1", "2", "3", "4", "5", "6", "7"]:
                     break
 
                 # Printing Command's Error
-                self.console.print("[red]:x: Command NOT available![/red]")
+                self.console.print("[red]❌ Command NOT available![/red]")
                 print()
 
             # Returning the Command Decision
@@ -242,11 +242,11 @@ class Database:
     def create_new_password(self) -> None:
 
         # Getting User Input
-        pwd = self.console.input("Enter the Password :right_arrow:  ")
-        email = self.console.input("Enter the Email :right_arrow:  ")
-        username = self.console.input("Enter the Username (if available) :right_arrow:  ")
-        url = self.console.input("Enter the Application's URL (if available) :right_arrow:  ")
-        app = self.console.input("Enter the Service you are using :right_arrow:  ")
+        pwd = self.console.input("Enter the Password ➡️  ")
+        email = self.console.input("Enter the Email ➡️  ")
+        username = self.console.input("Enter the Username (if available) ➡️  ")
+        url = self.console.input("Enter the Application's URL (if available) ➡️  ")
+        app = self.console.input("Enter the Service you are using ➡️  ")
         print()
 
         # Encrypting the Password
@@ -265,12 +265,12 @@ class Database:
     def update_password(self) -> None:
 
         # Getting User Input
-        pwd = self.console.input("Enter the Password :right_arrow:  ")
-        email = self.console.input("Enter the Password's Email :right_arrow:  ")
-        username = self.console.input("Enter the Password's Username :right_arrow:  ")
-        url = self.console.input("Enter the Password's Application URL :right_arrow:  ")
-        app = self.console.input("Enter the Password's Service Name :right_arrow:  ")
-        new_pwd = self.console.input("\nEnter the New Password :right_arrow:  ")
+        pwd = self.console.input("Enter the Password ➡️  ")
+        email = self.console.input("Enter the Password's Email ➡️  ")
+        username = self.console.input("Enter the Password's Username ➡️  ")
+        url = self.console.input("Enter the Password's Application URL ➡️  ")
+        app = self.console.input("Enter the Password's Service Name ➡️  ")
+        new_pwd = self.console.input("\nEnter the New Password ➡️  ")
         print()
 
         # Encrypting the New Password
@@ -304,11 +304,11 @@ class Database:
     def delete_password(self) -> None:
         
         # Getting User Input
-        pwd = self.console.input("Enter the Password :right_arrow:  ")
-        email = self.console.input("Enter the Email :right_arrow:  ")
-        username = self.console.input("Enter the Username :right_arrow:  ")
-        url = self.console.input("Enter the Application's URL :right_arrow:  ")
-        app = self.console.input("Enter the Service :right_arrow:  ")
+        pwd = self.console.input("Enter the Password ➡️  ")
+        email = self.console.input("Enter the Email ➡️  ")
+        username = self.console.input("Enter the Username ➡️  ")
+        url = self.console.input("Enter the Application's URL ➡️  ")
+        app = self.console.input("Enter the Service ➡️  ")
         print()
 
         # Searching in ALL the Password the ONE which corrispond to te Password Inputed
@@ -351,32 +351,29 @@ class Database:
         while True:
 
             # Getting User Input
-            option = self.console.input("[blue]Enter a Command :right_arrow:[/blue]  ")
+            option = self.console.input("[blue]Enter a Command ➡️[/blue]  ")
             print()
 
             if option in ["1", "2", "3"]:
                 break
 
             # Printing Command's Error
-            self.console.print(":x: [red]Command NOT Valid![/red]")
+            self.console.print("❌ [red]Command NOT Valid![/red]")
             print()
             continue
-
-        # Creating a Variable to store ALL the Passwords founded
-        password_list = []
 
         # Handling By URL Option
         if option == "1":
             
             self.password_message_anim(
-                "[blue]Enter the Service's URL :right_arrow:[/blue]  ",
+                "[blue]Enter the Service's URL ➡️[/blue]  ",
                 "SELECT * FROM passwords WHERE url=?",
             )
 
         elif option == "2":
 
             self.password_message_anim(
-                "[blue]Enter the Service's Name :right_arrow:[/blue]  ",
+                "[blue]Enter the Service's Name ➡️[/blue]  ",
                 "SELECT * FROM passwords WHERE app=?",
             )
 
@@ -402,32 +399,29 @@ class Database:
         while True:
 
             # Getting User Input
-            option = self.console.input("[blue]Enter a Command :right_arrow:[/blue]  ")
+            option = self.console.input("[blue]Enter a Command ➡️[/blue]  ")
             print()
 
             if option in ["1", "2", "3"]:
                 break
 
             # Printing Command's Error
-            self.console.print(":x: [red]Command NOT Valid![/red]")
+            self.console.print("❌ [red]Command NOT Valid![/red]")
             print()
             continue
-
-        # Creating a Variable to store ALL the Passwords founded
-        password_list = []
 
         # Handling By Email Option
         if option == "1":
 
             self.password_message_anim(
-                "[blue]Enter the Account's Email :right_arrow:[/blue]  ",
+                "[blue]Enter the Account's Email ➡️[/blue]  ",
                 "SELECT * FROM passwords WHERE email=?",
             )
 
         elif option == "2":
 
             self.password_message_anim(
-                "[blue]Enter the Account's Username :right_arrow:[/blue]  ",
+                "[blue]Enter the Account's Username ➡️[/blue]  ",
                 "SELECT * FROM passwords WHERE username=?",
             )
 
