@@ -9,6 +9,7 @@ from rich.progress import track
 from rich.table import Table
 import time
 import hashlib
+from getpass import getpass
 import os
 
 # Creating the Class
@@ -187,8 +188,7 @@ class Database:
     def get_master_password(self) -> bool:
 
         # Getting User Input
-        log_pwd = self.console.input(
-            "[blue]Enter the Master Password ➡️[/blue]  ").encode()
+        log_pwd = getpass("Enter the Master Password ➡️  ").encode()
         print()
 
         # Storing the Comparison
@@ -249,7 +249,7 @@ class Database:
     def create_new_password(self) -> None:
 
         # Getting User Input
-        pwd = self.console.input("Enter the Password ➡️  ")
+        pwd = getpass("Enter the Password ➡️  ")
         email = self.console.input("Enter the Email ➡️  ")
         username = self.console.input("Enter the Username (if available) ➡️  ")
         url = self.console.input(
@@ -279,12 +279,12 @@ class Database:
     def update_password(self) -> None:
 
         # Getting User Input
-        pwd = self.console.input("Enter the Password ➡️  ")
+        pwd = getpass("Enter the Password ➡️  ")
         email = self.console.input("Enter the Password's Email ➡️  ")
         username = self.console.input("Enter the Password's Username ➡️  ")
         url = self.console.input("Enter the Password's Application URL ➡️  ")
         app = self.console.input("Enter the Password's Service Name ➡️  ")
-        new_pwd = self.console.input("\nEnter the New Password ➡️  ")
+        new_pwd = getpass("\nEnter the New Password ➡️  ")
         print()
 
         # Encrypting the New Password
@@ -331,7 +331,7 @@ class Database:
     def delete_password(self) -> None:
 
         # Getting User Input
-        pwd = self.console.input("Enter the Password ➡️  ")
+        pwd = getpass("Enter the Password ➡️  ")
         email = self.console.input("Enter the Email ➡️  ")
         username = self.console.input("Enter the Username ➡️  ")
         url = self.console.input("Enter the Application's URL ➡️  ")
@@ -554,7 +554,6 @@ class Database:
                 "[yellow]Exiting the Program...[/yellow]"
             )
 
-    # TODO Rename this here and in `menu` and `input_handler`
     def script_exit_message(self, arg0):
         self.console.print(arg0)
         self.connection.commit()
