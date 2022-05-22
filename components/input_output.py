@@ -6,6 +6,8 @@ import cryptography
 from components.encrypt import Encryptor
 
 # Creating the Input/Output Class
+
+
 class IO:
 
     # Initializing the IO Class
@@ -106,8 +108,13 @@ class IO:
         enc_pwd = self.cryptor.encrypt(pwd)
 
         # Returning the Informations in a Dict
-        return {"pwd": enc_pwd, "email": email, "username": username, "url": url, "app": app}
-    
+        return {
+            "pwd": enc_pwd,
+            "email": email,
+            "username": username,
+            "url": url,
+            "app": app}
+
     # UI For Updating a Password
     def update_ui(self) -> dict:
 
@@ -124,7 +131,13 @@ class IO:
         new_enc_pwd = self.cryptor.encrypt(new_pwd)
 
         # Returning the Informations in a Dict
-        return {"pwd": pwd, "email": email, "username": username, "url": url, "app": app, "new_pwd": new_enc_pwd}
+        return {
+            "pwd": pwd,
+            "email": email,
+            "username": username,
+            "url": url,
+            "app": app,
+            "new_pwd": new_enc_pwd}
 
     # UI For Deleting a Password
     def delete_ui(self) -> dict:
@@ -138,7 +151,12 @@ class IO:
         print()
 
         # Returning the Informations in a Dict
-        return {"pwd": pwd, "email": email, "username": username, "url": url, "app": app}
+        return {
+            "pwd": pwd,
+            "email": email,
+            "username": username,
+            "url": url,
+            "app": app}
 
     # UI For Searching a Password
     def search_ui(self) -> int:
