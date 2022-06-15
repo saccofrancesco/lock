@@ -1,5 +1,5 @@
 # Gestore Password Crittografate
-Cryptographied Password Manager è uno strumento per la memorizzazione di password crittografate nel computer locale.
+Cryptographied Password Manager è uno strumento per la memorizzazione di password crittografate nel tuo computer locale.
 
 ## Set Up
 Scarica la cartella ZIP o clona il repository con:
