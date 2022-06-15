@@ -2,66 +2,72 @@
 from rich.console import Console
 from rich.table import Table
 from getpass import getpass
-import cryptography
 from components.encrypt import Encryptor
+import cryptography
 
 # Creating the Input/Output Class
 
 
 class IO:
 
-    # Initializing the IO Class
-    def __init__(self):
+    # Constructor
+    def __init__(self) -> None:
 
-        # Creating the Console Object
-        self.console = Console()
+        # Creating a Console Instance
+        self.CONSOLE = Console()
 
     # Getting the Master Password
     def get_master_password(self) -> str:
 
         # Returning the Master Password
-        pwd = getpass("Enter Master Password ➡️ ")
+        pwd = getpass("Enter Master Password ➡️  ")
 
-        # Creating the Encryptor Object
-        self.cryptor = Encryptor(pwd)
+        # Creating the Encryptor instance with the Master Password
+        self.CRYPTOR = Encryptor(pwd)
 
         # Returning the Master Password
         return pwd
 
     # Formatting the Passwords in a Table
-    def format_and_print_pwd(self, pwd_list: list) -> None:
+    def format_and_print_pwd(self, PWD_LIST: list) -> None:
 
         # Creating the Table
         table = Table()
 
-        # Creating the Columns
+        # Creating the Password, Email, Username, URL, Service Columns
         table.add_column("Password", style="cyan")
         table.add_column("Email", style="magenta")
         table.add_column("Username", style="green")
         table.add_column("URL", style="cyan")
         table.add_column("App", style="magenta")
 
-        # Add a Row for Each Password Founded
+        # Trying to Add a Row for Each Password Founded
         try:
+            
+            # Looping through the Passwords
+            for arg in PWD_LIST:
 
-            for row in pwd_list:
-                dec_pwd = self.cryptor.decrypt(row[0])
-                table.add_row(dec_pwd, row[1], row[2], row[3], row[4])
+                # Decrypting the Password
+                dec_pwd = self.CRYPTOR.decrypt(arg[0])
 
-            # Printing the Result
-            self.console.print(table)
+                # Adding the Row to the Table
+                table.add_row(dec_pwd, arg[1], arg[2], arg[3], arg[4])
+
+            # Print the Result
+            self.CONSOLE.print(table)
             print()
 
+        # If the Decryption Fails, throw an Error
         except cryptography.fernet.InvalidToken:
 
             # Printing the Error Message
-            self.console.print("[red]❌ Invalid Signature![/red]\n")
+            self.CONSOLE.print("[red]❌ Invalid Signature![/red]\n")
 
     # Showing the Menu Options
     def menu(self) -> int:
 
         # Showing the Menu
-        self.console.print(
+        self.CONSOLE.print(
             "[red]###################################[/red]",
             "[red]Cryptographied Password Manager[/red]",
             "[red]###################################[/red]",
@@ -80,89 +86,92 @@ class IO:
         while True:
 
             # Getting User Input
-            dec = self.console.input("[blue]Enter a Command ➡️[/blue]  ")
+            DECISION = self.CONSOLE.input("[blue]Enter a Command ➡️[/blue]  ")
             print()
 
-            if dec in ["1", "2", "3", "4", "5", "6", "7"]:
+            # Checking if the Input is a Number from 1 to 7
+            if DECISION in ["1", "2", "3", "4", "5", "6", "7"]:
+
+                # If, break the Loop
                 break
 
-            # Printing Command's Error
-            self.console.print("[red]❌ Command NOT available![/red]\n")
+            # Else, printing the Command's Error
+            self.CONSOLE.print("[red]❌ Command NOT available![/red]\n")
 
         # Returning the Command Decision
-        return int(dec)
+        return int(DECISION)
 
     # UI For Creating a New Password
     def create_ui(self) -> dict:
 
         # Getting User Input
-        pwd = getpass("Enter the Password ➡️  ")
-        email = self.console.input("Enter the Email ➡️  ")
-        username = self.console.input("Enter the Username (if available) ➡️  ")
-        url = self.console.input(
+        PWD = getpass("Enter the Password ➡️  ")
+        EMAIL = input("Enter the Email ➡️  ")
+        USER = input("Enter the Username (if available) ➡️  ")
+        URL = input(
             "Enter the Application's URL (if available) ➡️  ")
-        app = self.console.input("Enter the Service you are using ➡️  ")
+        APP = input("Enter the Service you are using ➡️  ")
         print()
 
         # Encrypting the Password
-        enc_pwd = self.cryptor.encrypt(pwd)
+        ENC_PWD = self.CRYPTOR.encrypt(PWD)
 
         # Returning the Informations in a Dict
         return {
-            "pwd": enc_pwd,
-            "email": email,
-            "username": username,
-            "url": url,
-            "app": app}
+            "pwd": ENC_PWD,
+            "email": EMAIL,
+            "username": USER,
+            "url": URL,
+            "app": APP}
 
     # UI For Updating a Password
     def update_ui(self) -> dict:
 
         # Getting User Input
-        pwd = getpass("Enter the Password ➡️  ")
-        email = self.console.input("Enter the Password's Email ➡️  ")
-        username = self.console.input("Enter the Password's Username ➡️  ")
-        url = self.console.input("Enter the Password's Application URL ➡️  ")
-        app = self.console.input("Enter the Password's Service Name ➡️  ")
-        new_pwd = getpass("\nEnter the New Password ➡️  ")
+        PWD = getpass("Enter the Password ➡️  ")
+        EMAIL = input("Enter the Password's Email ➡️  ")
+        USER = input("Enter the Password's Username ➡️  ")
+        URL = input("Enter the Password's Application URL ➡️  ")
+        APP = input("Enter the Password's Service Name ➡️  ")
+        NEW_PWD = getpass("\nEnter the New Password ➡️  ")
         print()
 
         # Encrypting the New Password
-        new_enc_pwd = self.cryptor.encrypt(new_pwd)
+        NEW_ENC_PWD = self.CRYPTOR.encrypt(NEW_PWD)
 
         # Returning the Informations in a Dict
         return {
-            "pwd": pwd,
-            "email": email,
-            "username": username,
-            "url": url,
-            "app": app,
-            "new_pwd": new_enc_pwd}
+            "pwd": PWD,
+            "email": EMAIL,
+            "username": USER,
+            "url": URL,
+            "app": APP,
+            "new_pwd": NEW_ENC_PWD}
 
     # UI For Deleting a Password
     def delete_ui(self) -> dict:
 
         # Getting User Input
-        pwd = getpass("Enter the Password ➡️  ")
-        email = self.console.input("Enter the Email ➡️  ")
-        username = self.console.input("Enter the Username ➡️  ")
-        url = self.console.input("Enter the Application's URL ➡️  ")
-        app = self.console.input("Enter the Service ➡️  ")
+        PWD = getpass("Enter the Password ➡️  ")
+        EMAIL = input("Enter the Email ➡️  ")
+        USER = input("Enter the Username ➡️  ")
+        URL = input("Enter the Application's URL ➡️  ")
+        APP = input("Enter the Service ➡️  ")
         print()
 
         # Returning the Informations in a Dict
         return {
-            "pwd": pwd,
-            "email": email,
-            "username": username,
-            "url": url,
-            "app": app}
+            "pwd": PWD,
+            "email": EMAIL,
+            "username": USER,
+            "url": URL,
+            "app": APP}
 
     # UI For Searching a Password
     def search_ui(self) -> int:
 
         # Printing the Menu
-        self.console.print("[green]Options Available:[/green]",
+        self.CONSOLE.print("[green]Options Available:[/green]",
                            "[blue]1. By URL[/blue]",
                            "[blue]2. By Service[/blue]",
                            "[yellow]3. Exit this Command[/yellow]", sep="\n")
@@ -171,22 +180,25 @@ class IO:
         while True:
 
             # Getting User Input
-            option = self.console.input("\n[blue]Enter a Command ➡️[/blue]  ")
+            OPTION = self.CONSOLE.input("\n[blue]Enter a Command ➡️[/blue]  ")
 
-            if option in ["1", "2", "3"]:
+            # Checking if the Input is a Number from 1 to 3
+            if OPTION in ["1", "2", "3"]:
+
+                # If, break the Loop
                 break
 
-            # Printing Command's Error
-            self.console.print("\n❌ [red]Command NOT Valid![/red]")
+            # Else, printing the Command's Error
+            self.CONSOLE.print("\n❌ [red]Command NOT Valid![/red]")
 
         # Returning the Command Decision
-        return int(option)
+        return int(OPTION)
 
     # UI For Listing Passwords
     def list_ui(self) -> int:
 
         # Printing the Menu
-        self.console.print("[green]Options Available:[/green]",
+        self.CONSOLE.print("[green]Options Available:[/green]",
                            "[blue]1. By Email[/blue]",
                            "[blue]2. By Username[/blue]",
                            "[yellow]3. Exit this Command[/yellow]", sep="\n")
@@ -195,13 +207,16 @@ class IO:
         while True:
 
             # Getting User Input
-            option = self.console.input("\n[blue]Enter a Command ➡️[/blue]  ")
+            option = self.CONSOLE.input("\n[blue]Enter a Command ➡️[/blue]  ")
 
+            # Checking if the Input is a Number from 1 to 3
             if option in ["1", "2", "3"]:
+
+                # If, break the Loop
                 break
 
-            # Printing Command's Error
-            self.console.print("\n❌ [red]Command NOT Valid![/red]")
+            # Else, printing the Command's Error
+            self.CONSOLE.print("\n❌ [red]Command NOT Valid![/red]")
 
         # Returning the Command Decision
         return int(option)

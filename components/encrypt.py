@@ -1,21 +1,21 @@
-# Importing the Libraries
-import secrets
+# Importing Libraries
 from base64 import urlsafe_b64encode as b64e, urlsafe_b64decode as b64d
 from cryptography.fernet import Fernet
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
+import secrets
 
 # Creating the Encryptor Class
 
 
 class Encryptor:
 
-    # Initializing the Class
-    def __init__(self, password: str):
+    # Constructor
+    def __init__(self, password: str) -> None:
 
         # Storing the Password
-        self.password = password
+        self.PASSWORD = password
 
         # Creating the Backend
         self.BACKEND = default_backend()
@@ -25,7 +25,7 @@ class Encryptor:
         kdf = PBKDF2HMAC(
             algorithm=hashes.SHA512(), length=32, salt=salt,
             iterations=iterations, backend=self.BACKEND)
-        return b64e(kdf.derive(self.password.encode()))
+        return b64e(kdf.derive(self.PASSWORD.encode()))
 
     # Creating the Encrypt Method
     def encrypt(
