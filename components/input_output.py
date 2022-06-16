@@ -1,4 +1,4 @@
-# Importing the neccassary Libraries
+# Importing Libraries
 from rich.console import Console
 from rich.table import Table
 from getpass import getpass
@@ -19,7 +19,7 @@ class IO:
     # Getting the Master Password
     def get_master_password(self) -> str:
 
-        # Returning the Master Password
+        # Getting User Input
         pwd = getpass("Enter Master Password ➡️  ")
 
         # Creating the Encryptor instance with the Master Password
@@ -53,7 +53,7 @@ class IO:
                 # Adding the Row to the Table
                 table.add_row(dec_pwd, arg[1], arg[2], arg[3], arg[4])
 
-            # Print the Result
+            # Print the Results
             self.CONSOLE.print(table)
             print()
 
@@ -95,7 +95,7 @@ class IO:
                 # If, break the Loop
                 break
 
-            # Else, printing the Command's Error
+            # Else, print an Error
             self.CONSOLE.print("[red]❌ Command NOT available![/red]\n")
 
         # Returning the Command Decision
@@ -188,7 +188,7 @@ class IO:
                 # If, break the Loop
                 break
 
-            # Else, printing the Command's Error
+            # Else, print an Error
             self.CONSOLE.print("\n❌ [red]Command NOT Valid![/red]")
 
         # Returning the Command Decision
@@ -215,7 +215,7 @@ class IO:
                 # If, break the Loop
                 break
 
-            # Else, printing the Command's Error
+            # Else, print an Error
             self.CONSOLE.print("\n❌ [red]Command NOT Valid![/red]")
 
         # Returning the Command Decision

@@ -1,11 +1,11 @@
-# Importing the necessaries Libraries
+# Importing Libraries
 from components.input_output import IO
 from components.encrypt import Encryptor
 from rich.console import Console
 import sqlite3
 import cryptography
 
-# Creating the Class
+# Creating the Database Class
 
 
 class Database:
@@ -34,7 +34,7 @@ class Database:
         # Getting the Master Password
         self.MASTER_PWD = self.IO.get_master_password()
 
-        # Creating the Cryptor Object
+        # Creating the Cryptor Object, using the Master Password
         self.CRYPTOR = Encryptor(self.MASTER_PWD)
 
         # Saving a Console Instance for Class' Pretty Printing
@@ -167,7 +167,7 @@ class Database:
         # If the List is Empty, print an Error Message
         else:
 
-            # Printing Error Message
+            # Printing the Error Message
             self.CONSOLE.print("[red]❌ Password NOT Found![/red]\n")
 
     # Create the Method for Deleting an existing Password

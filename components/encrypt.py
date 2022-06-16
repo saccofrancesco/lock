@@ -27,7 +27,7 @@ class Encryptor:
             iterations=iterations, backend=self.BACKEND)
         return b64e(kdf.derive(self.PASSWORD.encode()))
 
-    # Creating the Encrypt Method
+    # Method dedicated to Passwords Encryption
     def encrypt(
             self,
             message: str,
@@ -42,7 +42,7 @@ class Encryptor:
             )
         )
 
-    # Creating the Decrypt Method
+    # Method dedicated to Passwords Decryption
     def decrypt(self, token: bytes) -> bytes:
         decoded = b64d(token)
         salt, iter, token = decoded[:16], decoded[16:20], b64e(decoded[20:])
