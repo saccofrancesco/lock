@@ -4,7 +4,7 @@ Cryptographied Password Manager è uno strumento per la memorizzazione di passwo
 ## Set Up
 Scarica la cartella ZIP o clona il repository con:
 ```
-git clone https://github.com/TonicStark/Cryptographied-Password-Manager.git
+git clone https://github.com/TonicStark/cryptographied-password-manager.git
 ```
 
 Quindi installa le dipendenze in un virtualenv, puoi crearne uno tramite `python -m venv <name of the virtualenv>`, con:
