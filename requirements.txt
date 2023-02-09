@@ -1,6 +1,8 @@
 cffi==1.15.1
 commonmark==0.9.1
-cryptography==38.0.3
+cryptography==39.0.1
+markdown-it-py==2.1.0
+mdurl==0.1.2
 pycparser==2.21
-Pygments==2.13.0
-rich==12.6.0
+Pygments==2.14.0
+rich==13.3.1
