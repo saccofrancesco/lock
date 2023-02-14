@@ -4,6 +4,7 @@ from components.encrypt import Encryptor
 from rich.console import Console
 import sqlite3
 import cryptography
+from sys import exit
 
 # Creating the Database Class
 
