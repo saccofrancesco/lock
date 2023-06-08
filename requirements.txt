@@ -1,13 +1,13 @@
 altgraph==0.17.3
 cffi==1.15.1
 commonmark==0.9.1
-cryptography==40.0.2
+cryptography==41.0.1
 markdown-it-py==2.2.0
 mdurl==0.1.2
 pefile==2023.2.7
 pycparser==2.21
 Pygments==2.15.1
-pyinstaller==5.10.1
-pyinstaller-hooks-contrib==2023.2
+pyinstaller==5.11.0
+pyinstaller-hooks-contrib==2023.3
 pywin32-ctypes==0.2.0
-rich==13.3.4
+rich==13.4.1
