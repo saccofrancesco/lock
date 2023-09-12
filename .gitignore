@@ -1,5 +1,3 @@
 venv
 components/__pycache__
-main.spec
-build
-dist
+database.db
