@@ -1,5 +1,5 @@
-# Cryptographied Password Manager
-Cryptographied Password Manager è uno strumento per l'archiviazione di password crittografate sul tuo computer locale.
+# Crypt Lock
+Crypt Lock è uno strumento per l'archiviazione di password crittografate sul tuo computer locale.
 
 ## Set Up
 

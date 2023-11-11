@@ -1,5 +1,5 @@
-# Cryptographied Password Manager
-Cryptographied Password Manager is a tool for storing Encrypted Passwords in your Local machine. 
+# Crypt Lock
+Crypt Lock is a tool for storing Encrypted Passwords in your Local machine. 
 
 ## Set Up
 
