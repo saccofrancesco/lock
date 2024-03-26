@@ -2,3 +2,7 @@
 .python-version
 .venv
 database/.database.db
+colors/__pycache__
+components/__pycache__
+database/__pycache__
+font/__pycache__
