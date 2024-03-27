@@ -18,6 +18,10 @@
   <a href="#license">License</a>
 </p>
 
+<div align="center">
+  <img src="./assets/img/usage.gif">
+</div>
+
 ## Key Features
 * GUI - use and navigate easly
   - Start the app and you are ready to go
