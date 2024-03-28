@@ -1,5 +1,4 @@
 .DS_Store
-.python-version
 .venv
 database/.database.db
 colors/__pycache__
