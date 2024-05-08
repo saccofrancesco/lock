@@ -1,6 +1,6 @@
 autopep8==2.1.0
 cffi==1.16.0
-cryptography==42.0.5
+cryptography==42.0.7
 customtkinter==5.2.2
 darkdetect==0.8.0
 packaging==24.0
