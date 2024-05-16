@@ -325,15 +325,24 @@ class DeleteTopLevel(ctk.CTkToplevel):
         self.frame.pack(fill=ctk.BOTH, expand=True, padx=10, pady=10)
 
         # Creating the entries
+        self.master_entry: PasswordEntry = PasswordEntry(self.frame, 'Master Password')
         self.email_entry: CustomEntry = CustomEntry(self.frame, 'Email')
         self.username_entry: CustomEntry = CustomEntry(self.frame, 'Username')
         self.url_entry: CustomEntry = CustomEntry(self.frame, 'URL')
         self.service_entry: CustomEntry = CustomEntry(self.frame, 'Service')
 
         # Placing the entries
-        self.email_entry.pack(
+        self.master_entry.pack(
             pady=(
                 10,
+                5),
+            padx=10,
+            anchor='w',
+            expand=True,
+            fill=ctk.BOTH)
+        self.email_entry.pack(
+            pady=(
+                5,
                 5),
             padx=10,
             anchor='w',
@@ -359,6 +368,8 @@ class DeleteTopLevel(ctk.CTkToplevel):
             fill=ctk.BOTH)
 
         # Bind the function to entry changes
+        self.master_entry.bind('<KeyRelease>',
+                              lambda _: self.update_delete_button_state())
         self.email_entry.bind('<KeyRelease>',
                               lambda _: self.update_delete_button_state())
         self.username_entry.bind('<KeyRelease>',
@@ -388,6 +399,7 @@ class DeleteTopLevel(ctk.CTkToplevel):
     def get_entry_values(self) -> tuple[str]:
         return (
             entry.get() for entry in [
+                self.master_entry.entry,
                 self.email_entry,
                 self.username_entry,
                 self.url_entry,
