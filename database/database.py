@@ -70,7 +70,7 @@ def update_password(
             service))
     
     # Checking if the decryption goes well or not
-    if decrypt(CURSOR.fetchone(), master)[0]:
+    if decrypt(CURSOR.fetchone()[0], master)[0]:
 
         # Encrypting the password using tha master password
         encrypted_pwd = encrypt(new_pwd, master)
@@ -101,7 +101,7 @@ def delete_password(master: str, email: str, username: str, url: str, service: s
             service))
     
     # Checking if the decryption goes well or not
-    if decrypt(CURSOR.fetchone(), master)[0]:
+    if decrypt(CURSOR.fetchone()[0], master)[0]:
 
         # Perform the SQL Command via Cursor
         CURSOR.execute(
