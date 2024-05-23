@@ -1,6 +1,6 @@
 altgraph==0.17.4
 auto-py-to-exe==2.43.3
-autopep8==2.1.0
+autopep8==2.1.1
 bottle==0.12.25
 bottle-websocket==0.2.9
 certifi==2024.2.2
@@ -31,4 +31,4 @@ typing_extensions==4.11.0
 urllib3==2.2.1
 whichcraft==0.6.1
 zope.event==5.0
-zope.interface==6.4.post0
+zope.interface==6.4.post1
