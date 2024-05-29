@@ -1,6 +1,6 @@
 <div align="center">
   <img src="assets/icon/logo.png" alt="Lock" width="350">
-  <h1>Lock</h1>
+  <h1>lock</h1>
 </div>
 
 <h4 align="center">A UI based local password manager, built on top of <a href="https://customtkinter.tomschimansky.com/" target="_blank">Customtkinter</a>.</h4>
