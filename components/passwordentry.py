@@ -6,7 +6,17 @@ from PIL import Image
 
 # Creating the password entry widget with the option to show or not the password
 class PasswordEntry(ctk.CTkFrame):
+    """
+    A custom frame class for a password entry widget with a toggle button to show or hide the password.
 
+    Attributes:
+        EYE_ICON_PATH (str): Path to the open-eye icon.
+        EYE_ICON (ctk.CTkImage): CTkImage for the open-eye icon.
+        CLOSED_EYE_ICON_PATH (str): Path to the closed-eye icon.
+        CLOSED_EYE_ICON (ctk.CTkImage): CTkImage for the closed-eye icon.
+        BGCOLOR (str): Background color for the toggle button.
+        HOVERBGCOLOR (str): Hover background color for the toggle button.
+    """
     # Storing constants to use in class
     EYE_ICON_PATH: str = os.path.join('assets', 'icon', 'open-eye.png')
     EYE_ICON: ctk.CTkImage = ctk.CTkImage(
@@ -24,7 +34,13 @@ class PasswordEntry(ctk.CTkFrame):
     HOVERBGCOLOR: str = color('nord2')
 
     def __init__(self, master: ctk.CTkFrame, placeholder_text: str) -> None:
+        """
+        Initializes the PasswordEntry class with a specified master widget and placeholder text.
 
+        Args:
+            master (ctk.CTkFrame): The parent widget.
+            placeholder_text (str): The placeholder text to display in the entry field.
+        """
         # Initializing the super class
         super().__init__(master, fg_color='transparent')
 
@@ -54,6 +70,9 @@ class PasswordEntry(ctk.CTkFrame):
 
     # Update function to change icon used
     def toggle_password(self) -> None:
+        """
+        Toggles the visibility of the password in the entry field and updates the toggle button's icon.
+        """
         self.show_password: bool = not self.show_password
         if self.show_password:
             self.entry.configure(show='')

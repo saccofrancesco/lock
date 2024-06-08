@@ -8,7 +8,16 @@ from database.database import search_password
 
 # Creating the blueprint for the form to search passwords by a given criteria
 class SearchForm():
+    """
+    A custom form class for searching passwords based on given criteria.
 
+    Attributes:
+        BUTTON_BGCOLOR (str): Background color for the buttons.
+        SCROLLBAR_COLOR (str): Color for the scrollbar.
+        SEARCH_BGCOLOR (str): Background color for the search button.
+        TEXT_COLOR (str): Text color for the buttons.
+        DISABLED_SEARCH_BGCOLOR (str): Background color for the disabled search button.
+    """
     # Storing constants to use in class
     BUTTON_BGCOLOR: str = color('nord2')
     SCROLLBAR_COLOR: str = color('nord3')
@@ -17,7 +26,14 @@ class SearchForm():
     DISABLED_SEARCH_BGCOLOR: str = color('nord0')
 
     def __init__(self, master: ctk.CTkFrame, criteria: str, top: ctk.CTkToplevel) -> None:
+        """
+        Initializes the SearchForm class with specified master widget, search criteria, and top-level window.
 
+        Args:
+            master (ctk.CTkFrame): The parent widget.
+            criteria (str): The criteria to search passwords by.
+            top (ctk.CTkToplevel): The top-level window to be closed by the cancel button.
+        """
         # Saving form criteria
         self.criteria: str = criteria
 
@@ -64,6 +80,12 @@ class SearchForm():
 
     # Method to get the values from the entries
     def get_entry_values(self) -> tuple[str]:
+        """
+        Retrieves the values from the entry fields.
+
+        Returns:
+            tuple[str, str]: The values entered in the master password and criteria entry fields.
+        """
         return (
             entry.get() for entry in [
                 self.master_entry.entry,
@@ -71,7 +93,9 @@ class SearchForm():
     
     # Method to update the state of the create button
     def update_search_button_state(self) -> None:
-
+        """
+        Updates the state of the search button based on the presence of text in the entry fields.
+        """
         # Getting all the values
         values = list(self.get_entry_values())
 
@@ -86,7 +110,9 @@ class SearchForm():
     
     # Method for showing passwords in the frame based on the parameters
     def search_password(self) -> None:
-
+        """
+        Searches for passwords based on the criteria and updates the scrollable frame with the results.
+        """
         # Fetching all the passwords corresponding to a certain criteria value
         passwords_list: list = search_password(self.master_entry.entry.get(), self.criteria, self.criteria_entry.get())
 

@@ -28,11 +28,32 @@ NORD_PALETTE = {
 
 # Method to get color based on given key
 def color(key: str) -> str:
+    """
+    Retrieves the hex color code from the NORD_PALETTE dictionary based on the provided key.
+
+    Args:
+        key (str): The key representing the desired color in the NORD_PALETTE.
+
+    Returns:
+        str: The hex color code corresponding to the key. Returns None if the key is not found.
+    """
     return NORD_PALETTE.get(key, None)
 
 # Method to get a bit more dark shaded color given the nord hex
 def darken_color(hex_color, factor=0.8):
+    """
+    Darkens a given hex color by a specified factor.
 
+    Args:
+        hex_color (str): The hex color code to be darkened.
+        factor (float, optional): The factor by which to darken the color. Default is 0.8.
+
+    Returns:
+        str: The darkened hex color code.
+
+    Example:
+        darken_color('#88C0D0', 0.8) -> '#6E99A4'
+    """
     # Convert hex to RGB
     rgb_color = tuple(int(hex_color[i:i+2], 16) for i in (1, 3, 5))
 

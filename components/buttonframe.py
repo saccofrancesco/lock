@@ -5,8 +5,25 @@ from components.buttons import *
 
 # Craeting the buttonframe blueprint
 class ButtonFrame(ctk.CTkFrame):
-    def __init__(self, master: ctk.CTk, width: int, height: int) -> None:
+    """
+    A custom frame class that creates a frame containing several buttons using customtkinter.
 
+    Attributes:
+        master (ctk.CTk): The parent widget.
+        width (int): The width of the button frame.
+        height (int): The height of the button frame.
+        buttons (list): A list of button instances added to the frame.
+    """
+    def __init__(self, master: ctk.CTk, width: int, height: int) -> None:
+        """
+        Initializes the ButtonFrame class with the provided master, width, and height.
+        Creates and places buttons in a 3x2 grid.
+
+        Args:
+            master (ctk.CTk): The parent widget.
+            width (int): The width of the button frame.
+            height (int): The height of the button frame.
+        """
         # Initializing the super class
         super().__init__(
             master,

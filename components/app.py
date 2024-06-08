@@ -6,8 +6,23 @@ from colors.colors import color
 
 # Craeting the App blueprint
 class App(ctk.CTk):
-    def __init__(self, title: str, size: tuple) -> None:
+    """
+    A custom application class that creates the main application window using customtkinter.
 
+    Attributes:
+        title (str): The title of the application window.
+        size (tuple): The size of the application window (width, height).
+        header (Header): The header component of the application.
+        buttonframe (ButtonFrame): The button frame component of the application.
+    """
+    def __init__(self, title: str, size: tuple) -> None:
+        """
+        Initializes the App class with the provided title and size. Sets up the main window, header, and button frame.
+
+        Args:
+            title (str): The title of the application window.
+            size (tuple): The size of the application window (width, height).
+        """
         # Initializing the super class
         super().__init__(fg_color=color('nord0'))
         self.resizable(False, False)
@@ -31,4 +46,7 @@ class App(ctk.CTk):
 
     # Auxiliar method for running the App
     def run(self) -> None:
+        """
+        Starts the application's main event loop.
+        """
         self.mainloop()
