@@ -12,7 +12,10 @@ CURSOR: sqlite3.Cursor = CONNECTION.cursor()
 
 # Method to always chek if the table is created, if not, do it
 def check_and_create_table() -> None:
-
+    """
+    Ensures that the 'passwords' table exists in the database. If the table does not exist,
+    it creates the table with columns for password (encrypted blob), email, username, URL, and service.
+    """
     # Create the Database Table, if not already existing
     CURSOR.execute(
         '''CREATE TABLE IF NOT EXISTS passwords (password blob,
@@ -32,7 +35,17 @@ def create_password(
         username: str,
         url: str,
         service: str) -> None:
+    """
+    Creates a new password entry in the database. The password is encrypted using the master password before storing.
 
+    Args:
+        master (str): The master password used for encrypting the password.
+        pwd (str): The password to be stored.
+        email (str): The email associated with the password.
+        username (str): The username associated with the password.
+        url (str): The URL associated with the password.
+        service (str): The service associated with the password.
+    """
     check_and_create_table()
 
     # Encrypting the password using tha master password
@@ -58,7 +71,17 @@ def update_password(
         username: str,
         url: str,
         service: str) -> None:
+    """
+    Updates an existing password in the database. The new password is encrypted using the master password before storing.
 
+    Args:
+        master (str): The master password used for encrypting the new password.
+        new_pwd (str): The new password to replace the old one.
+        email (str): The email associated with the password.
+        username (str): The username associated with the password.
+        url (str): The URL associated with the password.
+        service (str): The service associated with the password.
+    """
     check_and_create_table()
 
     # Searching the password to update based on given criteria
@@ -89,7 +112,16 @@ def update_password(
 
 # Method to delete a Password
 def delete_password(master: str, email: str, username: str, url: str, service: str) -> None:
+    """
+    Deletes a password entry from the database based on the provided criteria.
 
+    Args:
+        master (str): The master password used for decrypting and verifying the password to be deleted.
+        email (str): The email associated with the password.
+        username (str): The username associated with the password.
+        url (str): The URL associated with the password.
+        service (str): The service associated with the password.
+    """
     check_and_create_table()
 
     # Searching the password to update based on given criteria
@@ -116,7 +148,18 @@ def delete_password(master: str, email: str, username: str, url: str, service: s
 
 # Method to search Passwords
 def search_password(master: str, criteria: str, value: str) -> list:
+    """
+    Searches for passwords in the database based on the provided criteria and value. 
+    The passwords are decrypted using the master password before returning.
 
+    Args:
+        master (str): The master password used for decrypting the found passwords.
+        criteria (str): The field to search by (e.g., 'email', 'username', 'url', or 'service').
+        value (str): The value to search for in the specified field.
+
+    Returns:
+        list: A list of decrypted passwords matching the search criteria.
+    """
     check_and_create_table()
 
     # Perform the SQL Command via Cursor
@@ -135,7 +178,15 @@ def search_password(master: str, criteria: str, value: str) -> list:
 
 # Method to fetch all Passwords
 def list_passwords(master: str) -> list:
+    """
+    Fetches all passwords from the database. The passwords are decrypted using the master password before returning.
 
+    Args:
+        master (str): The master password used for decrypting the passwords.
+
+    Returns:
+        list: A list of all decrypted passwords.
+    """
     check_and_create_table()
 
     # Perform the SQL Command via Cursor

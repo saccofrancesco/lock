@@ -9,7 +9,16 @@ from database.database import create_password, update_password, delete_password,
 
 # Creating the toplevel blueprint for password creation
 class CreateTopLevel(ctk.CTkToplevel):
+    """
+    A custom toplevel window class for creating a new password.
 
+    Attributes:
+        WINDOW_COLOR (str): Background color for the window.
+        FRAME_COLOR (str): Background color for the frame.
+        BUTTON_BGCOLOR (str): Background color for the create button.
+        BUTTON_BGCOLOR_DISABLED (str): Background color for the disabled create button.
+        TEXT_COLOR (str): Text color for the buttons.
+    """
     # Storing constants to use in class
     WINDOW_COLOR: str = color('nord0')
     FRAME_COLOR: str = color('nord1')
@@ -18,7 +27,9 @@ class CreateTopLevel(ctk.CTkToplevel):
     TEXT_COLOR: str = color('nord2')
 
     def __init__(self) -> None:
-
+        """
+        Initializes the CreateTopLevel window with the specified settings and widgets.
+        """
         # Initializing the super class
         super().__init__(fg_color=self.WINDOW_COLOR)
         self.resizable(False, False)
@@ -118,6 +129,12 @@ class CreateTopLevel(ctk.CTkToplevel):
 
     # Method to get the values from the entries
     def get_entry_values(self) -> tuple[str]:
+        """
+        Retrieves the values from all entry fields.
+
+        Returns:
+            tuple[str]: A tuple containing the values from the master password, password, email, username, URL, and service entries.
+        """
         return (
             entry.get() for entry in [
                 self.master_entry.entry,
@@ -129,7 +146,10 @@ class CreateTopLevel(ctk.CTkToplevel):
 
     # Method to update the state of the create button
     def update_create_button_state(self) -> None:
-
+        """
+        Updates the state of the create button based on the entry fields' values.
+        Enables the create button if the master password and password fields are filled, and at least one other field is filled.
+        """
         # Getting all the values
         values = list(self.get_entry_values())
 
@@ -144,7 +164,9 @@ class CreateTopLevel(ctk.CTkToplevel):
 
     # Method for creating a new password based on the inputed entries
     def create_password(self) -> None:
-
+        """
+        Creates a new password using the provided entries and closes the window.
+        """
         # Committing the password
         create_password(*self.get_entry_values())
 
@@ -153,7 +175,16 @@ class CreateTopLevel(ctk.CTkToplevel):
 
 # Creating the toplevel blueprint for password updates
 class UpdateTopLevel(ctk.CTkToplevel):
+    """
+    A custom toplevel window class for updating an existing password.
 
+    Attributes:
+        WINDOW_COLOR (str): Background color for the window.
+        FRAME_COLOR (str): Background color for the frame.
+        BUTTON_BGCOLOR (str): Background color for the update button.
+        BUTTON_BGCOLOR_DISABLED (str): Background color for the disabled update button.
+        TEXT_COLOR (str): Text color for the buttons.
+    """
     # Storing constants to use in class
     WINDOW_COLOR: str = color('nord0')
     FRAME_COLOR: str = color('nord1')
@@ -162,7 +193,9 @@ class UpdateTopLevel(ctk.CTkToplevel):
     TEXT_COLOR: str = color('nord2')
 
     def __init__(self) -> None:
-
+        """
+        Initializes the UpdateTopLevel window with the specified settings and widgets.
+        """
         # Initializing the super class
         super().__init__(fg_color=self.WINDOW_COLOR)
         self.resizable(False, False)
@@ -263,6 +296,12 @@ class UpdateTopLevel(ctk.CTkToplevel):
 
     # Method to get the values from the entries
     def get_entry_values(self) -> tuple[str]:
+        """
+        Retrieves the values from all entry fields.
+
+        Returns:
+            tuple[str]: A tuple containing the values from the master password, new password, email, username, URL, and service entries.
+        """
         return (
             entry.get() for entry in [
                 self.master_entry.entry,
@@ -274,7 +313,10 @@ class UpdateTopLevel(ctk.CTkToplevel):
 
     # Method to update the state of the create button
     def update_update_button_state(self) -> None:
-
+        """
+        Updates the state of the update button based on the entry fields' values.
+        Enables the update button if the master password and new password fields are filled, and at least one other field is filled.
+        """
         # Getting all the values
         values = list(self.get_entry_values())
 
@@ -289,7 +331,9 @@ class UpdateTopLevel(ctk.CTkToplevel):
 
     # Method for updating an existing password based on the inputed entries
     def update_password(self) -> None:
-
+        """
+        Updates an existing password using the provided entries and closes the window.
+        """
         # Committing the password
         update_password(*self.get_entry_values())
 
@@ -298,7 +342,16 @@ class UpdateTopLevel(ctk.CTkToplevel):
 
 # Creating the toplevel blueprint for password deletition
 class DeleteTopLevel(ctk.CTkToplevel):
+    """
+    A custom toplevel window for deleting passwords based on provided entries.
 
+    Attributes:
+        WINDOW_COLOR (str): Background color of the window.
+        FRAME_COLOR (str): Background color of the frame.
+        BUTTON_BGCOLOR (str): Background color of the delete button.
+        BUTTON_BGCOLOR_DISABLED (str): Background color of the delete button when disabled.
+        TEXT_COLOR (str): Text color of the buttons.
+    """
     # Storing constants to use in class
     WINDOW_COLOR: str = color('nord0')
     FRAME_COLOR: str = color('nord1')
@@ -307,7 +360,9 @@ class DeleteTopLevel(ctk.CTkToplevel):
     TEXT_COLOR: str = color('nord4')
 
     def __init__(self) -> None:
-
+        """
+        Initializes the DeleteTopLevel window with a form to input password details for deletion.
+        """
         # Initializing the super class
         super().__init__(fg_color=self.WINDOW_COLOR)
         self.resizable(False, False)
@@ -397,6 +452,12 @@ class DeleteTopLevel(ctk.CTkToplevel):
 
     # Method to get the values from the entries
     def get_entry_values(self) -> tuple[str]:
+        """
+        Retrieves the values from the entry fields.
+
+        Returns:
+            tuple[str]: A tuple containing the values of the master password, email, username, URL, and service entries.
+        """
         return (
             entry.get() for entry in [
                 self.master_entry.entry,
@@ -407,7 +468,10 @@ class DeleteTopLevel(ctk.CTkToplevel):
 
     # Method to update the state of the create button
     def update_delete_button_state(self) -> None:
-
+        """
+        Updates the state of the delete button based on the presence of values in the entry fields.
+        Enables the delete button if any entry field has a value; otherwise, disables it.
+        """
         # Getting all the values
         values = list(self.get_entry_values())
 
@@ -422,7 +486,9 @@ class DeleteTopLevel(ctk.CTkToplevel):
 
     # Method for deleting an existing password based on the inputed entries
     def delete_password(self) -> None:
-
+        """
+        Deletes an existing password based on the inputted entries and closes the window.
+        """
         # Committing the password
         delete_password(*self.get_entry_values())
 
@@ -431,7 +497,19 @@ class DeleteTopLevel(ctk.CTkToplevel):
 
 # Creating the toplevel blueprint for searching password by url / service
 class SearchTopLevel(ctk.CTkToplevel):
+    """
+    A custom toplevel window for searching passwords based on URL or service.
 
+    Attributes:
+        WINDOW_COLOR (str): Background color of the window.
+        FRAME_COLOR (str): Background color of the frame.
+        BUTTON_BGCOLOR (str): Background color of the tab buttons.
+        BUTTON_SELECTED_COLOR (str): Background color of the selected tab button.
+        SEARCH_BGCOLOR (str): Background color of the search button.
+        DISABLED_SEARCH_BGCOLOR (str): Background color of the search button when disabled.
+        TEXT_COLOR (str): Text color of the buttons.
+        SCROLLBAR_COLOR (str): Color of the scrollbar.
+    """
     # Storing constants to use in class
     WINDOW_COLOR: str = color('nord0')
     FRAME_COLOR: str = color('nord1')
@@ -443,7 +521,12 @@ class SearchTopLevel(ctk.CTkToplevel):
     SCROLLBAR_COLOR: str = color('nord3')
 
     def __init__(self, filter_couple: tuple[str, str]) -> None:
+        """
+        Initializes the SearchTopLevel window with tabs for searching passwords by URL or service.
 
+        Args:
+            filter_couple (tuple[str, str]): A tuple containing the filter criteria names (e.g., ('URL', 'Service')).
+        """
         # Initializing the super class
         super().__init__(fg_color=self.WINDOW_COLOR)
         self.resizable(False, False)
@@ -476,7 +559,17 @@ class SearchTopLevel(ctk.CTkToplevel):
 
 # Creating the blueprint to list all passwords
 class ListAllTopLevel(ctk.CTkToplevel):
+    """
+    A custom toplevel window for listing all passwords.
 
+    Attributes:
+        WINDOW_COLOR (str): Background color of the window.
+        FRAME_COLOR (str): Background color of the frame.
+        LIST_BGCOLOR (str): Background color of the list button.
+        DISABLED_LIST_BGCOLOR (str): Background color of the list button when disabled.
+        TEXT_COLOR (str): Text color of the buttons.
+        SCROLLBAR_COLOR (str): Color of the scrollbar.
+    """
     # Storing constants to use in class
     WINDOW_COLOR: str = color('nord0')
     FRAME_COLOR: str = color('nord1')
@@ -486,7 +579,9 @@ class ListAllTopLevel(ctk.CTkToplevel):
     SCROLLBAR_COLOR: str = color('nord3')
 
     def __init__(self) -> None:
-
+        """
+        Initializes the ListAllTopLevel window with a form to input master password and a scrollable frame to list passwords.
+        """
         # Initializing the super class
         super().__init__(fg_color=self.WINDOW_COLOR)
         self.resizable(False, False)
@@ -542,11 +637,20 @@ class ListAllTopLevel(ctk.CTkToplevel):
     
     # Method to get the values from the entries
     def get_entry_values(self) -> str:
+        """
+        Retrieves the value from the master password entry field.
+
+        Returns:
+            str: The value of the master password entry.
+        """
         return self.master_entry.entry.get()
     
     # Method to update the state of the create button
     def update_list_button_state(self) -> None:
-
+        """
+        Updates the state of the list button based on the presence of a value in the master password entry field.
+        Enables the list button if the entry field has a value; otherwise, disables it.
+        """
         # Getting all the values
         values = list(self.get_entry_values())
 
@@ -561,7 +665,10 @@ class ListAllTopLevel(ctk.CTkToplevel):
 
     # Method for showing passwords in the frame based on the parameters
     def list_password(self) -> None:
-
+        """
+        Lists all passwords corresponding to the master password entered in the entry field.
+        Displays the passwords in the scrollable frame.
+        """
         # Fetching all the passwords corresponding to a certain criteria value
         passwords_list: list = list_passwords(self.get_entry_values())
 
