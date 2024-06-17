@@ -67,8 +67,8 @@ This software uses the following open source packages:
 - [NORD](https://www.nordtheme.com)
 
 ## You may also like...
-- [supreme-bot](https://github.com/saccofrancesco/supreme-bot) built on top of [Streamlit](https://streamlit.io/);
-- [crossword-solver](https://github.com/saccofrancesco/crosswords-solver) built on top of [Streamlit](https://streamlit.io/) and [Tesseract](https://github.com/tesseract-ocr/tesseract).
+- [supremebot](https://github.com/saccofrancesco/supremebot) built on top of [Streamlit](https://streamlit.io/);
+- [crosswords](https://github.com/saccofrancesco/crosswords) built on top of [Streamlit](https://streamlit.io/) and [Tesseract](https://github.com/tesseract-ocr/tesseract).
 
 ## License
 Attribution - NonCommercial - ShareAlike 4.0 International
