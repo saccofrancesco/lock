@@ -3,6 +3,7 @@ import customtkinter as ctk
 from colors.colors import color
 from components.buttons import *
 
+
 # Craeting the buttonframe blueprint
 class ButtonFrame(ctk.CTkFrame):
     """
@@ -14,6 +15,7 @@ class ButtonFrame(ctk.CTkFrame):
         height (int): The height of the button frame.
         buttons (list): A list of button instances added to the frame.
     """
+
     def __init__(self, master: ctk.CTk, width: int, height: int) -> None:
         """
         Initializes the ButtonFrame class with the provided master, width, and height.
@@ -25,16 +27,17 @@ class ButtonFrame(ctk.CTkFrame):
             height (int): The height of the button frame.
         """
         # Initializing the super class
-        super().__init__(
-            master,
-            width=width,
-            height=height,
-            fg_color=color('nord1'))
+        super().__init__(master, width=width, height=height, fg_color=color("nord1"))
 
         # Create 6 buttons
-        self.buttons = [CreateButton(self), UpdateButton(self), DeleteButton(self),
-                   SearchByUrlServiceButton(self), SearchByEmailUsernameButton(self),
-                   ListPasswordButton(self)]
+        self.buttons = [
+            CreateButton(self),
+            UpdateButton(self),
+            DeleteButton(self),
+            SearchByUrlServiceButton(self),
+            SearchByEmailUsernameButton(self),
+            ListPasswordButton(self),
+        ]
 
         # Place buttons in a 3x2  grid and expand them to fill the entire frame
         for i, button in enumerate(self.buttons):

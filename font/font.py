@@ -1,6 +1,7 @@
 # Importing Libraries
 import customtkinter as ctk
 
+
 # Creaeting the custom App font
 class CustomFont(ctk.CTkFont):
     """
@@ -23,6 +24,7 @@ class CustomFont(ctk.CTkFont):
 
         custom_font = CustomFont(size=12, weight='normal')
     """
+
     def __init__(self, size: int, weight: str) -> None:
         """
         Initializes a CustomFont object with the specified size and weight.
@@ -32,4 +34,4 @@ class CustomFont(ctk.CTkFont):
             weight (str): The weight of the font.
         """
         # Initializing the super class
-        super().__init__('Impact', size, weight)
+        super().__init__("Impact", size, weight)
