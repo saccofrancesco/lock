@@ -20,11 +20,11 @@ pillow==11.1.0
 pip-review==1.3.0
 pycparser==2.22
 pyinstaller==6.12.0
-pyinstaller-hooks-contrib==2025.1
-pyparsing==3.2.1
+pyinstaller-hooks-contrib==2025.2
+pyparsing==3.2.3
 requests==2.32.3
-setuptools==76.1.0
-typing_extensions==4.12.2
+setuptools==78.1.0
+typing_extensions==4.13.0
 urllib3==2.3.0
 zope.event==5.0
 zope.interface==7.2
