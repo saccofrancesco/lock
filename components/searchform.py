@@ -70,6 +70,7 @@ class SearchForm:
             self.srcollable_frame,
             textvariable=self.password_label_text,
             font=("Arial", 18),
+            text_color=color("nord4"),
         )
         self.password_label.pack()
 
