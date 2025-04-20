@@ -57,6 +57,7 @@ class PasswordEntry(ctk.CTkFrame):
             font=("arial", 14),
             fg_color=color("nord0"),
             placeholder_text_color=color("nord4"),
+            text_color=color("nord4"),
         )
         self.entry.pack(side=ctk.LEFT, padx=(0, 5), pady=0, fill=ctk.BOTH, expand=True)
 
