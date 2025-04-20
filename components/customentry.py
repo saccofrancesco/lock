@@ -26,5 +26,6 @@ class CustomEntry(ctk.CTkEntry):
             master,
             fg_color=color("nord0"),
             placeholder_text_color=color("nord4"),
+            text_color=color("nord4"),
             placeholder_text=placeholder_text,
         )
