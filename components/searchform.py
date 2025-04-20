@@ -52,6 +52,7 @@ class SearchForm:
             height=50,
             label_text="Passwords",
             label_fg_color=color("nord3"),
+            label_text_color=color("nord4"),
             fg_color=self.BUTTON_BGCOLOR,
             scrollbar_button_color=self.SCROLLBAR_COLOR,
             scrollbar_button_hover_color=darken_color(self.SCROLLBAR_COLOR),
