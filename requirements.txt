@@ -1,6 +1,6 @@
 altgraph==0.17.4
 auto-py-to-exe==2.46.0
-bottle==0.13.2
+bottle==0.13.3
 bottle-websocket==0.2.9
 certifi==2025.1.31
 cffi==1.17.1
@@ -23,7 +23,7 @@ pyinstaller==6.13.0
 pyinstaller-hooks-contrib==2025.3
 pyparsing==3.2.3
 requests==2.32.3
-setuptools==78.1.1
+setuptools==79.0.0
 typing_extensions==4.13.2
 urllib3==2.4.0
 zope.event==5.0
