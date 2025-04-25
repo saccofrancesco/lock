@@ -10,7 +10,7 @@ customtkinter==5.2.2
 darkdetect==0.8.0
 Eel==0.18.1
 future==1.0.0
-gevent==25.4.1
+gevent==25.4.2
 gevent-websocket==0.10.1
 greenlet==3.2.1
 idna==3.10
@@ -23,7 +23,7 @@ pyinstaller==6.13.0
 pyinstaller-hooks-contrib==2025.3
 pyparsing==3.2.3
 requests==2.32.3
-setuptools==79.0.0
+setuptools==79.0.1
 typing_extensions==4.13.2
 urllib3==2.4.0
 zope.event==5.0
