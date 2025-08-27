@@ -1,9 +1,15 @@
 <div align="center">
-  <img src="assets/icon/logo.png" alt="Lock" width="350">
-  <h1>lock</h1>
+  <img src="assets/icon/logo.png" alt="Lock - Local Password Manager" width="350">
+  <h1>🔒 Lock: A Local UI-Based Password Manager</h1>
 </div>
 
-<h4 align="center">A UI based local password manager, built on top of <a href="https://customtkinter.tomschimansky.com/" target="_blank">Customtkinter</a>.</h4>
+<div align="center">
+  <a href="https://www.buymeacoffee.com/saccofrancesco">
+    <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" />
+  </a>
+</div>
+
+<h4 align="center">A cross-platform, secure, and beautifully designed password manager — built with <a href="https://customtkinter.tomschimansky.com/" target="_blank">CustomTkinter</a> and powered by strong encryption.</h4>
 
 <p align="center">
   <img src="https://img.shields.io/github/contributors/saccofrancesco/lock?style=for-the-badge" alt="Contributors">
@@ -12,66 +18,107 @@
 </p>
 
 <p align="center">
+  <a href="#tldr">TL;DR</a> •
   <a href="#key-features">Key Features</a> •
-  <a href="#how-to-use">How To Use</a> •
+  <a href="#quickstart">Quickstart</a> •
   <a href="#credits">Credits</a> •
   <a href="#license">License</a>
 </p>
 
 <div align="center">
-  <img src="./assets/img/usage.gif">
+  <img src="./assets/img/usage.gif" alt="Lock in action">
 </div>
 
-## Key Features
-* GUI - use and navigate easly
-  - Start the app and you are ready to go
-* Simple and reactive UI
-  - Every action changes the interface
-  - Some custom feature, like password hiding when digiting
-* Manage your passwords easily
-  - There are many action you can perform
-* Curated design
-  - Implemented the [NORD palette](https://www.nordtheme.com/docs/colors-and-palettes)
-* Nice design principle
-  - Remember one passwords, access all
-* Hyper secure storage method
-  - Each password is encrypted based on your master password, the only one you have to remember!
-* Cross platform
-  - Windows, macOS and Linux ready.
+---
 
-## How To Use
-To clone and run this application, you'll need [Git](https://git-scm.com) and [Python](https://www.python.org/downloads/) (which comes with [pip](https://pip.pypa.io/en/stable/)) installed on your computer. From your command line:
+## 📌 TL;DR
+**Lock** is a local password manager with a sleek CustomTkinter GUI.  
+It encrypts all your credentials with a master password, so you only need to remember **one password to access them all**.  
+Simple, reactive, and cross-platform — security made user-friendly.
+
+---
+
+## 💡 Why Lock Stands Out
+- **Minimal setup** – just run and start managing passwords  
+- **Secure by design** – AES encryption tied to your master password  
+- **Smooth UI** – reactive CustomTkinter interface with password-hiding features  
+- **Curated visuals** – themed with the elegant [Nord color palette](https://www.nordtheme.com/docs/colors-and-palettes)  
+- **Cross-platform** – works on Windows, macOS, and Linux  
+
+---
+
+## 🔑 Key Features
+* **Simple GUI** – Start the app and you’re ready to go.  
+* **Reactive UI** – Every action instantly updates the interface.  
+* **Password Safety** – Hide input while typing and store securely.  
+* **Design Principles** – “Remember one password, access all.”  
+* **Strong Encryption** – Each credential is encrypted with your master password.  
+* **Cross-Platform** – Works across major OSes.  
+
+---
+
+## ⚡ Quickstart
+
+To clone and run Lock, you’ll need [Git](https://git-scm.com) and [Python](https://www.python.org/downloads/).
 
 ```bash
 # Clone this repository
-$ git clone https://github.com/saccofrancesco/lock.git
-
-# Go into the repository
-$ cd lock
+git clone https://github.com/saccofrancesco/lock.git
+cd lock
 
 # Install dependencies
-$ pip install -r requirements.txt
+pip install -r requirements.txt
 
 # Run the app
-$ python main.py
+python main.py
 ```
 
-## Emailware
-Lock is an [emailware](https://en.wiktionary.org/wiki/emailware). Meaning, if you liked using this app or it has helped you in any way, I'd like you send me an email at <francescosacco.github@gmail.com> about anything you'd want to say about this software. I'd really appreciate it!
+---
 
-## Credits
-This software uses the following open source packages:
-- [Python](https://www.python.org/)
-- [Custotkinter](https://customtkinter.tomschimansky.com/)
-- [Cryptography](https://github.com/pyca/cryptography)
-- [NORD](https://www.nordtheme.com)
+## 📬 Emailware: Share Your Thoughts
 
-## You may also like...
-- [supremebot](https://github.com/saccofrancesco/supremebot) built on top of [Streamlit](https://streamlit.io/);
-- [crosswords](https://github.com/saccofrancesco/crosswords) built on top of [Streamlit](https://streamlit.io/) and [Tesseract](https://github.com/tesseract-ocr/tesseract).
+Lock is [emailware](https://en.wiktionary.org/wiki/emailware).
+If this app helps you, I’d love to hear from you!
 
-## License
-Attribution - NonCommercial - ShareAlike 4.0 International
+Send feedback to: **[francescosacco.github@gmail.com](mailto:francescosacco.github@gmail.com)**
 
 ---
+
+## 🙏 Love Lock? Support It!
+
+If you enjoy this project:
+
+* ⭐️ Star the repo
+* 🧃 [Buy me a coffee](https://www.buymeacoffee.com/saccofrancesco)
+* 💌 Share your thoughts by email
+
+---
+
+## 🧠 Credits & Acknowledgements
+
+Lock uses the following great libraries:
+
+* [Python](https://www.python.org/)
+* [CustomTkinter](https://customtkinter.tomschimansky.com/)
+* [Cryptography](https://github.com/pyca/cryptography)
+* [Nord Theme](https://www.nordtheme.com)
+
+---
+
+## 📎 You Might Also Like...
+
+Check out more by the same author:
+
+* [SupremeBot](https://github.com/saccofrancesco/supremebot): A Supreme bot built with [Streamlit](https://streamlit.io/).
+* [Crosswords](https://github.com/saccofrancesco/crosswords): Crossword solver powered by [Streamlit](https://streamlit.io/) and [Tesseract OCR](https://github.com/tesseract-ocr/tesseract).
+
+---
+
+## 📜 License
+
+This project is licensed under **Attribution - NonCommercial - ShareAlike 4.0 International**.
+See the [LICENSE](./LICENSE) file for details.
+
+---
+
 > GitHub [@saccofrancesco](https://github.com/saccofrancesco)
