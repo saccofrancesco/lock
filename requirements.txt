@@ -1,5 +1,5 @@
 altgraph==0.17.4
-auto-py-to-exe==2.46.0
+auto-py-to-exe==2.47.0
 bottle==0.13.4
 bottle-websocket==0.2.9
 certifi==2025.8.3
@@ -10,7 +10,7 @@ customtkinter==5.2.2
 darkdetect==0.8.0
 Eel==0.18.2
 future==1.0.0
-gevent==25.5.1
+gevent==25.8.1
 gevent-websocket==0.10.1
 greenlet==3.2.4
 idna==3.10
