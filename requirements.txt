@@ -10,7 +10,7 @@ customtkinter==5.2.2
 darkdetect==0.8.0
 Eel==0.18.2
 future==1.0.0
-gevent==25.8.1
+gevent==25.8.2
 gevent-websocket==0.10.1
 greenlet==3.2.4
 idna==3.10
