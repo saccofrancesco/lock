@@ -116,8 +116,7 @@ Check out more by the same author:
 
 ## 📜 License
 
-This project is licensed under **Attribution - NonCommercial - ShareAlike 4.0 International**.
-See the [LICENSE](./LICENSE) file for details.
+This project is licensed under the [MIT License](https://opensource.org/licenses/MIT) — feel free to use it in your own projects!
 
 ---
 
