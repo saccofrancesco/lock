@@ -12,7 +12,7 @@ Eel==0.18.2
 future==1.0.0
 gevent==25.9.1
 gevent-websocket==0.10.1
-greenlet==3.3.0
+greenlet==3.3.1
 idna==3.11
 importlib_resources==6.5.2
 macholib==1.16.4
