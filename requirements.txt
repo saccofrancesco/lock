@@ -24,7 +24,7 @@ pyinstaller==6.18.0
 pyinstaller-hooks-contrib==2026.0
 pyparsing==3.3.2
 requests==2.32.5
-setuptools==80.10.1
+setuptools==80.10.2
 typing_extensions==4.15.0
 urllib3==2.6.3
 zope.event==6.1
