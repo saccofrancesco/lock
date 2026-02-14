@@ -1,6 +1,6 @@
 <div align="center">
   <img src="assets/icon/logo.png" alt="Lock - Local Password Manager" width="350">
-  <h1>🔒 Lock: A Local UI-Based Password Manager</h1>
+  <h1>Lock: A Local UI-Based Password Manager</h1>
 </div>
 
 <p align="center">
@@ -109,7 +109,7 @@ Lock uses the following great libraries:
 
 Check out more by the same author:
 
-* [SupremeBot](https://github.com/saccofrancesco/supremebot): A Supreme bot built with [Streamlit](https://streamlit.io/).
+* [Supremebot](https://github.com/saccofrancesco/supremebot): A Supreme bot built with [Streamlit](https://streamlit.io/).
 * [Crosswords](https://github.com/saccofrancesco/crosswords): Crossword solver powered by [Streamlit](https://streamlit.io/) and [Tesseract OCR](https://github.com/tesseract-ocr/tesseract).
 
 ---
