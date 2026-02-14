@@ -3,9 +3,11 @@
   <h1>🔒 Lock: A Local UI-Based Password Manager</h1>
 </div>
 
-<div align="center">
-  <a href="https://www.buymeacoffee.com/saccofrancesco"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=☕&slug=saccofrancesco&button_colour=FFDD00&font_colour=000000&font_family=Bree&outline_colour=000000&coffee_colour=ffffff" /></a>
-</div>
+<p align="center">
+  <a href="https://www.buymeacoffee.com/saccofrancesco">
+    <img src="https://img.shields.io/badge/Buy%20Me%20A%20Coffee-FFDD00?style=for-the-badge&logo=buymeacoffee&logoColor=000000" />
+  </a>
+</p>
 
 <h4 align="center">A cross-platform, secure, and beautifully designed password manager — built with <a href="https://customtkinter.tomschimansky.com/" target="_blank">CustomTkinter</a> and powered by strong encryption.</h4>
 
