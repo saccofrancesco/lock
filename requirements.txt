@@ -1,5 +1,5 @@
 altgraph==0.17.5
-auto-py-to-exe==2.49.0
+auto-py-to-exe==2.50.0
 bottle==0.13.4
 bottle-websocket==0.2.9
 certifi==2026.2.25
