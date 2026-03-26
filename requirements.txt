@@ -5,7 +5,7 @@ bottle-websocket==0.2.9
 certifi==2026.2.25
 cffi==2.0.0
 charset-normalizer==3.4.6
-cryptography==46.0.5
+cryptography==46.0.6
 customtkinter==5.2.2
 darkdetect==0.8.0
 Eel==0.18.2
@@ -23,7 +23,7 @@ pycparser==3.0
 pyinstaller==6.19.0
 pyinstaller-hooks-contrib==2026.3
 pyparsing==3.3.2
-requests==2.32.5
+requests==2.33.0
 setuptools==82.0.1
 typing_extensions==4.15.0
 urllib3==2.6.3
