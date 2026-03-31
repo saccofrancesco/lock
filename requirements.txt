@@ -23,7 +23,7 @@ pycparser==3.0
 pyinstaller==6.19.0
 pyinstaller-hooks-contrib==2026.3
 pyparsing==3.3.2
-requests==2.33.0
+requests==2.33.1
 setuptools==82.0.1
 typing_extensions==4.15.0
 urllib3==2.6.3
