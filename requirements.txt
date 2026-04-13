@@ -14,7 +14,7 @@ gevent==26.4.0
 gevent-websocket==0.10.1
 greenlet==3.4.0
 idna==3.11
-importlib_resources==7.0.0
+importlib_resources==7.1.0
 macholib==1.16.4
 packaging==26.0
 pillow==12.2.0
