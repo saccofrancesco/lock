@@ -12,7 +12,7 @@ Eel==0.18.2
 future==1.0.0
 gevent==26.4.0
 gevent-websocket==0.10.1
-greenlet==3.4.0
+greenlet==3.5.0
 idna==3.13
 importlib_resources==7.1.0
 macholib==1.16.4
@@ -27,5 +27,5 @@ requests==2.33.1
 setuptools==82.0.1
 typing_extensions==4.15.0
 urllib3==2.6.3
-zope.event==6.1
+zope.event==6.2
 zope.interface==8.4
