@@ -1,10 +1,11 @@
 # Importing Libraries
 import sqlite3
-import os
+from pathlib import Path
 from database.encryptor import encrypt, decrypt
+from utils.paths import ensure_database_file
 
 # Storing constants to use in class
-DB_PATH: str = os.path.join("database", ".database.db")
+DB_PATH: Path = ensure_database_file()
 
 # Initialize Global Class' Variables
 CONNECTION: sqlite3.Connection = sqlite3.connect(DB_PATH)
@@ -18,13 +19,11 @@ def check_and_create_table() -> None:
     it creates the table with columns for password (encrypted blob), email, username, URL, and service.
     """
     # Create the Database Table, if not already existing
-    CURSOR.execute(
-        """CREATE TABLE IF NOT EXISTS passwords (password blob,
+    CURSOR.execute("""CREATE TABLE IF NOT EXISTS passwords (password blob,
                                                     email text,
                                                     username text,
                                                     url text,
-                                                    service text)"""
-    )
+                                                    service text)""")
 
     # Committing the Table
     CONNECTION.commit()
