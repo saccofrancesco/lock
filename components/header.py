@@ -1,7 +1,7 @@
 # Importing Libraries
 import customtkinter as ctk
-import os
 from PIL import Image
+from utils.paths import resource_path
 
 
 # Craeting the header blueprint
@@ -17,9 +17,7 @@ class Header(ctk.CTkFrame):
     """
 
     # Storing constants to use in class
-    BASE_PATH: str = "assets"
-    TITLE_PATH: str = os.path.join(BASE_PATH, "img")
-    DARK_TITLE_PATH: str = os.path.join(TITLE_PATH, "dark-title.png")
+    DARK_TITLE_PATH: str = resource_path("assets", "img", "dark-title.png")
     TEXT_IMG_SIZE: tuple[int, int] = (196, 50)
 
     def __init__(self, master: ctk.CTk) -> None:
