@@ -10,15 +10,22 @@ permissions:
 
 jobs:
   build:
-    name: Build (${{ matrix.os }})
-    runs-on: ${{ matrix.os }}
+    name: Build (${{ matrix.target }})
+    runs-on: ${{ matrix.runner }}
     strategy:
       fail-fast: false
       matrix:
-        os:
-          - ubuntu-latest
-          - windows-latest
-          - macos-latest
+        include:
+          - runner: windows-latest
+            target: windows-x64
+          - runner: macos-15-intel
+            target: macos-intel
+          - runner: macos-latest
+            target: macos-arm64
+          - runner: ubuntu-24.04
+            target: linux-x64
+          - runner: ubuntu-24.04-arm
+            target: linux-arm64
 
     steps:
       - name: Checkout
@@ -41,12 +48,14 @@ jobs:
           pip install pyinstaller==6.20.0 customtkinter==5.2.2 cryptography==48.0.0 pillow==12.2.0
 
       - name: Build executable artifact
+        env:
+          BUILD_TARGET: ${{ matrix.target }}
         run: python scripts/build_release.py
 
       - name: Upload platform artifact
         uses: actions/upload-artifact@v4
         with:
-          name: release-${{ runner.os }}
+          name: release-${{ matrix.target }}
           path: release/*
           if-no-files-found: error
 
