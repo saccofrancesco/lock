@@ -1,8 +1,8 @@
 # Importing Libraries
 import customtkinter as ctk
 from colors.colors import color
-import os
 from PIL import Image
+from utils.paths import resource_path
 
 
 # Creating the password entry widget with the option to show or not the password
@@ -20,13 +20,13 @@ class PasswordEntry(ctk.CTkFrame):
     """
 
     # Storing constants to use in class
-    EYE_ICON_PATH: str = os.path.join("assets", "icon", "open-eye.png")
+    EYE_ICON_PATH: str = resource_path("assets", "icon", "open-eye.png")
     EYE_ICON: ctk.CTkImage = ctk.CTkImage(
         light_image=Image.open(EYE_ICON_PATH),
         dark_image=Image.open(EYE_ICON_PATH),
         size=(28, 14),
     )
-    CLOSED_EYE_ICON_PATH: str = os.path.join("assets", "icon", "closed-eye.png")
+    CLOSED_EYE_ICON_PATH: str = resource_path("assets", "icon", "closed-eye.png")
     CLOSED_EYE_ICON: ctk.CTkImage = ctk.CTkImage(
         light_image=Image.open(CLOSED_EYE_ICON_PATH),
         dark_image=Image.open(CLOSED_EYE_ICON_PATH),
