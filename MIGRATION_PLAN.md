@@ -4,8 +4,8 @@
 - Date: 2026-05-27
 - Branch: `main`
 - Status: `in_progress`
-- Phase: `Qt scaffold complete / UI migration in progress`
-- Confidence: `high` for UI/logic parity scope, `medium` for encryption compatibility until verified with test vectors
+- Phase: `core Qt migration implemented / final parity validation pending`
+- Confidence: `high` for UI/logic parity scope, `high` for encryption compatibility (validated against Python implementation)
 
 ## 2. Completed Steps
 - Inspected project structure and source modules.
@@ -19,28 +19,40 @@
   - main window shell (`include/main_window.h`, `src/main_window.cpp`)
   - theme constants/utilities (`include/theme.h`, `src/theme.cpp`)
   - asset path resolver (`include/path_utils.h`, `src/path_utils.cpp`)
+- Implemented reusable widgets and styles:
+  - `PasswordField` with show/hide toggle and eye icons
+  - shared entry/button styling helpers
 - Recreated initial main window visual shell:
   - fixed `500x425` window
   - Nord background/frame
   - header title image sizing (`196x50`) and spacing
   - 3x2 action button grid with mapped colors/icons/text
-- Verified scaffold build succeeds:
+- Implemented all dialogs and interaction flow:
+  - Create Password (`300x350`)
+  - Update Password (`300x350`)
+  - Delete Password (`300x350`)
+  - Search Password with tabbed criteria (`300x475`)
+  - List Passwords (`300x400`)
+  - single-instance dialog behavior per main action button (focus existing window)
+- Implemented data/security port:
+  - `PasswordStore` with SQLite CRUD/search/list using Qt SQL
+  - C++ crypto port with OpenSSL:
+    - PBKDF2-HMAC-SHA512 key derivation
+    - Fernet-compatible AES/HMAC token handling
+    - Python-compatible wrapped payload format (`salt + iterations + raw_fernet`, base64url)
+- Verified build and runtime smoke tests:
   - `cmake -S qt -B qt/build`
   - `cmake --build qt/build -j`
+- Verified Python/C++ crypto compatibility both directions:
+  - Python `encrypt` -> Qt `decrypt` passed
+  - Qt `encrypt` -> Python `decrypt` passed
+- Added Qt build/run docs in `qt/README.md`.
 
 ## 3. Pending Steps
-- Recreate reusable widgets (password entry with show/hide, custom line edit styling).
-- Recreate dialogs:
-  - Create Password
-  - Update Password
-  - Delete Password
-  - Search Password (tabbed URL/service and email/username)
-  - List Passwords
-- Port database layer to Qt SQL (`QSqlDatabase` + SQLite).
-- Port encryption/decryption logic to C++ with compatibility for existing Python-generated tokens.
-- Wire all signal/slot behavior and button enable/disable logic.
-- Style match (Nord palette, spacing, fonts, icon sizing, fixed window sizes).
-- Build/test on current machine and document cross-platform build instructions.
+- Run manual UX parity pass against Python app for pixel-level spacing/typography differences.
+- Validate build/run on Windows and Linux toolchains.
+- Decide whether to keep `lock_qt_crypto_probe` target long-term or move it to a dedicated test harness.
+- Optional: package/distribution setup for cross-platform releases.
 
 ## 4. Discovered Project Structure
 - Entry point: `main.py`
@@ -69,7 +81,7 @@
 - `CTkLabel` (image/text) -> `QLabel` (`QPixmap`)
 - `CTkButton` -> `QPushButton`
 - `CTkEntry` -> `QLineEdit`
-- `PasswordEntry` composite -> custom `QWidget` containing `QLineEdit` + eye-toggle `QToolButton`
+- `PasswordEntry` composite -> custom `QWidget` containing `QLineEdit` + eye-toggle `QPushButton`
 - `CTkToplevel` -> `QDialog` (non-resizable, fixed size)
 - `CTkTabview` -> `QTabWidget`
 - `CTkScrollableFrame` -> `QScrollArea` + content widget/label
@@ -90,19 +102,21 @@
 - Use CMake (>=3.21) and Qt6 Widgets/Sql.
 - Use OpenSSL for cryptographic primitives (PBKDF2, AES/HMAC needed for Fernet-compatible behavior).
 - Keep assets in existing `assets/` path and resolve relative to executable working directory (with app-dir fallback).
+- Ignore local CMake artifacts via `.gitignore` (`qt/build/`).
 - Target platforms: macOS, Linux, Windows.
 
 ## 8. Issues Encountered
 - Resolved: toolchain blocker from previous checkpoint (CMake + Qt now available).
 - Non-blocking: first build attempt failed due parallel configure/build race; resolved by rebuilding after configure completed.
 - Non-blocking: initial `MainWindow` header used `Q_OBJECT` without required meta-object use; removed to fix linker vtable error.
+- Non-blocking: missing `QDir` include during DB layer port caused compile failure; fixed.
 - Known source quirks to preserve or consciously normalize:
   - Several key bindings in Python attach to wrapper widgets instead of internal entry (`PasswordEntry`); Qt port will bind directly to text-change signals for reliable behavior while preserving user-visible behavior.
-  - Python `decrypt` catches `InvalidSignature` only; Qt port will treat any crypto/auth/decode failure as decryption failure (same effective user-facing outcome).
+  - Python `decrypt` catches `InvalidSignature` only; Qt port treats crypto/auth/decode failures as decryption failure without crashing (same intended UX, safer failure behavior).
 
 ## 9. Required User Actions
 - None currently.
 
 ## 10. Resume Point
-- Safe resume checkpoint: **after Qt scaffold + main window shell build pass**.
-- Next concrete step: implement reusable entry widgets and migrate dialogs with real signal/slot logic.
+- Safe resume checkpoint: **after full core Qt feature migration + successful build + crypto compatibility verification**.
+- Next concrete step: run cross-platform and UX parity validation pass, then finalize migration handoff.
