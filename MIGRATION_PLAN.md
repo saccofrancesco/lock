@@ -3,8 +3,8 @@
 ## 1. Current Migration Status
 - Date: 2026-05-27
 - Branch: `main`
-- Status: `blocked`
-- Phase: `analysis complete / scaffold blocked by missing toolchain`
+- Status: `in_progress`
+- Phase: `Qt scaffold complete / UI migration in progress`
 - Confidence: `high` for UI/logic parity scope, `medium` for encryption compatibility until verified with test vectors
 
 ## 2. Completed Steps
@@ -13,10 +13,22 @@
 - Identified assets and sizing behavior used by the Python UI.
 - Captured migration strategy and checkpoints in this file.
 - Validated local toolchain availability for Qt build start.
+- Created Qt project scaffold under `qt/`:
+  - `CMakeLists.txt`
+  - app entry point (`src/main.cpp`)
+  - main window shell (`include/main_window.h`, `src/main_window.cpp`)
+  - theme constants/utilities (`include/theme.h`, `src/theme.cpp`)
+  - asset path resolver (`include/path_utils.h`, `src/path_utils.cpp`)
+- Recreated initial main window visual shell:
+  - fixed `500x425` window
+  - Nord background/frame
+  - header title image sizing (`196x50`) and spacing
+  - 3x2 action button grid with mapped colors/icons/text
+- Verified scaffold build succeeds:
+  - `cmake -S qt -B qt/build`
+  - `cmake --build qt/build -j`
 
 ## 3. Pending Steps
-- Create Qt Widgets C++ project scaffold (CMake + source layout).
-- Recreate main window and 3x2 action grid.
 - Recreate reusable widgets (password entry with show/hide, custom line edit styling).
 - Recreate dialogs:
   - Create Password
@@ -81,25 +93,16 @@
 - Target platforms: macOS, Linux, Windows.
 
 ## 8. Issues Encountered
-- Blocking: Qt/C++ toolchain is not currently available in this shell.
-  - `cmake --version` -> `command not found: cmake`
-  - `qtpaths --qt-version` -> `command not found: qtpaths`
-- Migration cannot proceed safely without at least CMake + Qt SDK present.
+- Resolved: toolchain blocker from previous checkpoint (CMake + Qt now available).
+- Non-blocking: first build attempt failed due parallel configure/build race; resolved by rebuilding after configure completed.
+- Non-blocking: initial `MainWindow` header used `Q_OBJECT` without required meta-object use; removed to fix linker vtable error.
 - Known source quirks to preserve or consciously normalize:
   - Several key bindings in Python attach to wrapper widgets instead of internal entry (`PasswordEntry`); Qt port will bind directly to text-change signals for reliable behavior while preserving user-visible behavior.
   - Python `decrypt` catches `InvalidSignature` only; Qt port will treat any crypto/auth/decode failure as decryption failure (same effective user-facing outcome).
 
 ## 9. Required User Actions
-- Install and expose required tools in `PATH`:
-  - CMake
-  - Qt 6 SDK including `qtpaths` and `uic`/`moc`
-  - C++ compiler toolchain (Xcode Command Line Tools on macOS)
-- Verify with:
-  - `cmake --version`
-  - `qtpaths --qt-version`
-  - `clang++ --version`
-- After setup, rerun in this repo and I will continue the migration from scaffold creation.
+- None currently.
 
 ## 10. Resume Point
-- Safe resume checkpoint: **after analysis, before Qt scaffold creation (blocked by toolchain)**.
-- Next concrete step once tools are installed: initialize `qt/` project files (`CMakeLists.txt`, `src/`, `include/`) and port theme/constants first.
+- Safe resume checkpoint: **after Qt scaffold + main window shell build pass**.
+- Next concrete step: implement reusable entry widgets and migrate dialogs with real signal/slot logic.
