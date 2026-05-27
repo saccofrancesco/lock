@@ -1,0 +1,6 @@
+{
+  "cmake.configureOnOpen": true,
+  "cmake.sourceDirectory": "${workspaceFolder}/qt",
+  "cmake.buildDirectory": "${workspaceFolder}/qt/build",
+  "C_Cpp.default.compileCommands": "${workspaceFolder}/qt/build/compile_commands.json"
+}

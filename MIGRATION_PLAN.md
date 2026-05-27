@@ -47,6 +47,9 @@
   - Python `encrypt` -> Qt `decrypt` passed
   - Qt `encrypt` -> Python `decrypt` passed
 - Added Qt build/run docs in `qt/README.md`.
+- Added IDE support for C++ IntelliSense:
+  - enabled `CMAKE_EXPORT_COMPILE_COMMANDS` in `qt/CMakeLists.txt`
+  - added workspace VS Code config (`.vscode/settings.json`, `.vscode/c_cpp_properties.json`)
 
 ## 3. Pending Steps
 - Run manual UX parity pass against Python app for pixel-level spacing/typography differences.
@@ -110,6 +113,7 @@
 - Non-blocking: first build attempt failed due parallel configure/build race; resolved by rebuilding after configure completed.
 - Non-blocking: initial `MainWindow` header used `Q_OBJECT` without required meta-object use; removed to fix linker vtable error.
 - Non-blocking: missing `QDir` include during DB layer port caused compile failure; fixed.
+- Non-blocking: VS Code includePath/IntelliSense errors due missing compile database; fixed by generating `compile_commands.json` and wiring workspace settings.
 - Known source quirks to preserve or consciously normalize:
   - Several key bindings in Python attach to wrapper widgets instead of internal entry (`PasswordEntry`); Qt port will bind directly to text-change signals for reliable behavior while preserving user-visible behavior.
   - Python `decrypt` catches `InvalidSignature` only; Qt port treats crypto/auth/decode failures as decryption failure without crashing (same intended UX, safer failure behavior).
