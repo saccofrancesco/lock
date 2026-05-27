@@ -4,11 +4,11 @@ import os
 import platform
 import subprocess
 import sys
-import tarfile
 import zipfile
 from pathlib import Path
 
 APP_NAME: str = "Lock"
+ASSET_BASENAME: str = "lock"
 ICON_PATH: str = os.path.join("assets", "icon", "logo.png")
 
 
@@ -46,9 +46,7 @@ def build_onefile(root_dir: Path) -> Path:
     return root_dir / "dist" / exe_name
 
 
-def archive_executable(
-    executable_path: Path, output_dir: Path, version_tag: str
-) -> Path:
+def archive_executable(executable_path: Path, output_dir: Path) -> Path:
     target_label: str = os.getenv("BUILD_TARGET", "").strip()
     system_name: str = platform.system().lower()
     platform_name: str = {
@@ -67,29 +65,20 @@ def archive_executable(
     artifact_target: str = target_label if target_label else f"{platform_name}-{arch_name}"
 
     output_dir.mkdir(parents=True, exist_ok=True)
-    artifact_stem: str = f"{APP_NAME}-{version_tag}-{artifact_target}"
-
-    if os.name == "nt":
-        archive_path: Path = output_dir / f"{artifact_stem}.zip"
-        with zipfile.ZipFile(
-            archive_path, mode="w", compression=zipfile.ZIP_DEFLATED
-        ) as zip_file:
-            zip_file.write(executable_path, executable_path.name)
-        return archive_path
-
-    archive_path = output_dir / f"{artifact_stem}.tar.gz"
-    with tarfile.open(archive_path, mode="w:gz") as tar_file:
-        tar_file.add(executable_path, arcname=executable_path.name)
+    archive_path: Path = output_dir / f"{ASSET_BASENAME}-{artifact_target}.zip"
+    with zipfile.ZipFile(
+        archive_path, mode="w", compression=zipfile.ZIP_DEFLATED
+    ) as zip_file:
+        zip_file.write(executable_path, executable_path.name)
     return archive_path
 
 
 def main() -> None:
     root_dir: Path = Path(__file__).resolve().parents[1]
     release_dir: Path = root_dir / "release"
-    version_tag: str = os.getenv("GITHUB_REF_NAME", "dev")
 
     executable_path: Path = build_onefile(root_dir)
-    archive_path: Path = archive_executable(executable_path, release_dir, version_tag)
+    archive_path: Path = archive_executable(executable_path, release_dir)
     print(f"Created release artifact: {archive_path}")
 
 
