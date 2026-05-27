@@ -3,8 +3,8 @@
 ## 1. Current Migration Status
 - Date: 2026-05-27
 - Branch: `main`
-- Status: `in_progress`
-- Phase: `analysis complete / scaffolding next`
+- Status: `blocked`
+- Phase: `analysis complete / scaffold blocked by missing toolchain`
 - Confidence: `high` for UI/logic parity scope, `medium` for encryption compatibility until verified with test vectors
 
 ## 2. Completed Steps
@@ -12,6 +12,7 @@
 - Mapped main UI shell, action grid, dialogs, and DB/encryption flow.
 - Identified assets and sizing behavior used by the Python UI.
 - Captured migration strategy and checkpoints in this file.
+- Validated local toolchain availability for Qt build start.
 
 ## 3. Pending Steps
 - Create Qt Widgets C++ project scaffold (CMake + source layout).
@@ -80,14 +81,25 @@
 - Target platforms: macOS, Linux, Windows.
 
 ## 8. Issues Encountered
-- None blocking yet.
+- Blocking: Qt/C++ toolchain is not currently available in this shell.
+  - `cmake --version` -> `command not found: cmake`
+  - `qtpaths --qt-version` -> `command not found: qtpaths`
+- Migration cannot proceed safely without at least CMake + Qt SDK present.
 - Known source quirks to preserve or consciously normalize:
   - Several key bindings in Python attach to wrapper widgets instead of internal entry (`PasswordEntry`); Qt port will bind directly to text-change signals for reliable behavior while preserving user-visible behavior.
   - Python `decrypt` catches `InvalidSignature` only; Qt port will treat any crypto/auth/decode failure as decryption failure (same effective user-facing outcome).
 
 ## 9. Required User Actions
-- None currently.
+- Install and expose required tools in `PATH`:
+  - CMake
+  - Qt 6 SDK including `qtpaths` and `uic`/`moc`
+  - C++ compiler toolchain (Xcode Command Line Tools on macOS)
+- Verify with:
+  - `cmake --version`
+  - `qtpaths --qt-version`
+  - `clang++ --version`
+- After setup, rerun in this repo and I will continue the migration from scaffold creation.
 
 ## 10. Resume Point
-- Safe resume checkpoint: **after analysis, before Qt scaffold creation**.
-- Next concrete step: initialize `cpp/` Qt project files (`CMakeLists.txt`, `src/`, `include/`) and port theme/constants first.
+- Safe resume checkpoint: **after analysis, before Qt scaffold creation (blocked by toolchain)**.
+- Next concrete step once tools are installed: initialize `qt/` project files (`CMakeLists.txt`, `src/`, `include/`) and port theme/constants first.
