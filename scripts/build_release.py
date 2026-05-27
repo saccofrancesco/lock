@@ -9,6 +9,7 @@ import zipfile
 from pathlib import Path
 
 APP_NAME: str = "Lock"
+ICON_PATH: str = os.path.join("assets", "icon", "logo.png")
 
 
 def run_command(command: list[str], cwd: Path) -> None:
@@ -27,8 +28,11 @@ def build_onefile(root_dir: Path) -> Path:
         "--noconfirm",
         "--clean",
         "--onefile",
+        "--windowed",
         "--name",
         APP_NAME,
+        "--icon",
+        ICON_PATH,
         "--collect-all",
         "customtkinter",
         "--add-data",
@@ -38,9 +42,6 @@ def build_onefile(root_dir: Path) -> Path:
         "main.py",
     ]
 
-    if platform.system().lower() != "darwin":
-        command.insert(6, "--windowed")
-
     run_command(command, root_dir)
     return root_dir / "dist" / exe_name
 
@@ -48,15 +49,25 @@ def build_onefile(root_dir: Path) -> Path:
 def archive_executable(
     executable_path: Path, output_dir: Path, version_tag: str
 ) -> Path:
+    target_label: str = os.getenv("BUILD_TARGET", "").strip()
     system_name: str = platform.system().lower()
     platform_name: str = {
         "darwin": "macos",
         "windows": "windows",
         "linux": "linux",
     }.get(system_name, system_name)
+    machine_name: str = platform.machine().lower()
+    machine_aliases: dict[str, str] = {
+        "amd64": "x64",
+        "x86_64": "x64",
+        "arm64": "arm64",
+        "aarch64": "arm64",
+    }
+    arch_name: str = machine_aliases.get(machine_name, machine_name)
+    artifact_target: str = target_label if target_label else f"{platform_name}-{arch_name}"
 
     output_dir.mkdir(parents=True, exist_ok=True)
-    artifact_stem: str = f"{APP_NAME}-{version_tag}-{platform_name}"
+    artifact_stem: str = f"{APP_NAME}-{version_tag}-{artifact_target}"
 
     if os.name == "nt":
         archive_path: Path = output_dir / f"{artifact_stem}.zip"
