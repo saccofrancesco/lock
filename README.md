@@ -15,11 +15,13 @@
   <img src="https://img.shields.io/github/contributors/saccofrancesco/lock?style=for-the-badge" alt="Contributors">
   <img src="https://img.shields.io/github/forks/saccofrancesco/lock?style=for-the-badge" alt="Forks">
   <img src="https://img.shields.io/github/stars/saccofrancesco/lock?style=for-the-badge" alt="Stars">
+  <img src="https://img.shields.io/github/v/release/saccofrancesco/lock?display_name=tag&sort=semver&style=for-the-badge" alt="Latest Release">
 </p>
 
 <p align="center">
   <a href="#tldr">TL;DR</a> •
   <a href="#key-features">Key Features</a> •
+  <a href="#download-latest-release">Download</a> •
   <a href="#quickstart">Quickstart</a> •
   <a href="#credits">Credits</a> •
   <a href="#license">License</a>
@@ -54,6 +56,22 @@ Simple, reactive, and cross-platform — security made user-friendly.
 * **Design Principles** – “Remember one password, access all.”  
 * **Strong Encryption** – Each credential is encrypted with your master password.  
 * **Cross-Platform** – Works across major OSes.  
+
+---
+
+## ⬇️ Download Latest Release
+
+Use these links to download the **latest published release asset** directly:
+
+| Platform | Architecture | Direct download |
+|---|---|---|
+| Windows | x64 | [lock-windows-x64.zip](https://github.com/saccofrancesco/lock/releases/latest/download/lock-windows-x64.zip) |
+| macOS | Intel (x64) | [lock-macos-intel.zip](https://github.com/saccofrancesco/lock/releases/latest/download/lock-macos-intel.zip) |
+| macOS | Apple Silicon (arm64) | [lock-macos-arm64.zip](https://github.com/saccofrancesco/lock/releases/latest/download/lock-macos-arm64.zip) |
+| Linux | x64 | [lock-linux-x64.zip](https://github.com/saccofrancesco/lock/releases/latest/download/lock-linux-x64.zip) |
+| Linux | arm64 | [lock-linux-arm64.zip](https://github.com/saccofrancesco/lock/releases/latest/download/lock-linux-arm64.zip) |
+
+These URLs always target the latest release, so they stay valid after each new `v*` tag.
 
 ---
 
