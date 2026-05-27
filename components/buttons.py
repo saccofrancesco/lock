@@ -1,10 +1,10 @@
 # Importing Libraries
 import customtkinter as ctk
 from colors.colors import color, darken_color
-import os
 from PIL import Image
 from font.font import CustomFont
 from components.toplevels import *
+from utils.paths import resource_path
 
 
 # Craeting the createbutton component
@@ -20,7 +20,7 @@ class CreateButton(ctk.CTkButton):
     """
 
     # Storing constants to use in class
-    PLUS_ICON_PATH: str = os.path.join("assets", "icon", "plus.png")
+    PLUS_ICON_PATH: str = resource_path("assets", "icon", "plus.png")
     PLUS_IMG: ctk.CTkImage = ctk.CTkImage(
         light_image=Image.open(PLUS_ICON_PATH),
         dark_image=Image.open(PLUS_ICON_PATH),
@@ -93,7 +93,7 @@ class UpdateButton(ctk.CTkButton):
     """
 
     # Storing constants to use in class
-    ARROW_ICON_PATH: str = os.path.join("assets", "icon", "arrow.png")
+    ARROW_ICON_PATH: str = resource_path("assets", "icon", "arrow.png")
     ARROW_IMG: ctk.CTkImage = ctk.CTkImage(
         light_image=Image.open(ARROW_ICON_PATH),
         dark_image=Image.open(ARROW_ICON_PATH),
@@ -166,7 +166,7 @@ class DeleteButton(ctk.CTkButton):
     """
 
     # Storing constants to use in class
-    BIN_ICON_PATH: str = os.path.join("assets", "icon", "bin.png")
+    BIN_ICON_PATH: str = resource_path("assets", "icon", "bin.png")
     BIN_IMG: ctk.CTkImage = ctk.CTkImage(
         light_image=Image.open(BIN_ICON_PATH),
         dark_image=Image.open(BIN_ICON_PATH),
@@ -239,7 +239,7 @@ class SearchByUrlServiceButton(ctk.CTkButton):
     """
 
     # Storing constants to use in class
-    URL_ICON_PATH: str = os.path.join("assets", "icon", "url.png")
+    URL_ICON_PATH: str = resource_path("assets", "icon", "url.png")
     URL_IMG: ctk.CTkImage = ctk.CTkImage(
         light_image=Image.open(URL_ICON_PATH),
         dark_image=Image.open(URL_ICON_PATH),
@@ -312,7 +312,7 @@ class SearchByEmailUsernameButton(ctk.CTkButton):
     """
 
     # Storing constants to use in class
-    EMAIL_ICON_PATH: str = os.path.join("assets", "icon", "user.png")
+    EMAIL_ICON_PATH: str = resource_path("assets", "icon", "user.png")
     EMAIL_IMG: ctk.CTkImage = ctk.CTkImage(
         light_image=Image.open(EMAIL_ICON_PATH),
         dark_image=Image.open(EMAIL_ICON_PATH),
@@ -385,7 +385,7 @@ class ListPasswordButton(ctk.CTkButton):
     """
 
     # Storing constants to use in class
-    LIST_ICON_PATH: str = os.path.join("assets", "icon", "list.png")
+    LIST_ICON_PATH: str = resource_path("assets", "icon", "list.png")
     LIST_IMG: ctk.CTkImage = ctk.CTkImage(
         light_image=Image.open(LIST_ICON_PATH),
         dark_image=Image.open(LIST_ICON_PATH),
