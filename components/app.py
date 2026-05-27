@@ -1,8 +1,10 @@
 # Importing Libraries
 import customtkinter as ctk
+import tkinter as tk
 from components.buttonframe import ButtonFrame
 from components.header import Header
 from colors.colors import color
+from utils.paths import resource_path
 
 
 # Craeting the App blueprint
@@ -32,6 +34,8 @@ class App(ctk.CTk):
         # Configuring title and size
         self.title(title)
         self.geometry(f"{size[0]}x{size[1]}")
+        self._app_icon = None
+        self._set_window_icon()
 
         # Placing the App header
         self.header: Header = Header(self)
@@ -46,6 +50,16 @@ class App(ctk.CTk):
 
         # Running the App
         self.run()
+
+    def _set_window_icon(self) -> None:
+        """Set the window icon when available on the current platform."""
+        try:
+            self._app_icon = tk.PhotoImage(
+                file=resource_path("assets", "icon", "logo.png")
+            )
+            self.iconphoto(True, self._app_icon)
+        except tk.TclError:
+            self._app_icon = None
 
     # Auxiliar method for running the App
     def run(self) -> None:
