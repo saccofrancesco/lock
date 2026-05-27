@@ -15,7 +15,7 @@
   <img src="https://img.shields.io/github/contributors/saccofrancesco/lock?style=for-the-badge" alt="Contributors">
   <img src="https://img.shields.io/github/forks/saccofrancesco/lock?style=for-the-badge" alt="Forks">
   <img src="https://img.shields.io/github/stars/saccofrancesco/lock?style=for-the-badge" alt="Stars">
-  <img src="https://img.shields.io/github/v/release/saccofrancesco/lock?display_name=tag&sort=semver&style=for-the-badge" alt="Latest Release">
+  <img src="https://img.shields.io/github/v/release/saccofrancesco/lock?display_name=tag&include_prereleases&style=for-the-badge" alt="Latest Release">
 </p>
 
 <p align="center">
