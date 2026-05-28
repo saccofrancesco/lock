@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="assets/icon/logo.png" alt="Lock - Local Password Manager" width="350">
+  <img src="assets/icon/logo.png" alt="Lock - Local Password Manager" width="200">
   <h1>Lock: A Local UI-Based Password Manager</h1>
 </div>
 
