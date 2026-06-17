@@ -2,7 +2,7 @@ altgraph==0.17.5
 auto-py-to-exe==2.50.1
 bottle==0.13.4
 bottle-websocket==0.2.9
-certifi==2026.5.20
+certifi==2026.6.17
 cffi==2.0.0
 charset-normalizer==3.4.7
 click==8.4.1
@@ -13,7 +13,7 @@ Eel==0.18.2
 future==1.0.0
 gevent==26.5.0
 gevent-websocket==0.10.1
-greenlet==3.5.1
+greenlet==3.5.2
 h11==0.16.0
 idna==3.18
 importlib_resources==7.1.0
