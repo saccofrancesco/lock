@@ -5,9 +5,9 @@ bottle-websocket==0.2.9
 certifi==2026.6.17
 cffi==2.0.0
 charset-normalizer==3.4.7
-click==8.4.1
+click==8.4.2
 cryptography==49.0.0
-customtkinter==5.2.2
+customtkinter==6.0.0
 darkdetect==0.8.0
 Eel==0.18.2
 future==1.0.0
