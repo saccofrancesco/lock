@@ -11,9 +11,9 @@ customtkinter==6.0.0
 darkdetect==0.8.0
 Eel==0.18.2
 future==1.0.0
-gevent==26.7.0
+gevent==26.8.0
 gevent-websocket==0.10.1
-greenlet==3.5.4
+greenlet==3.5.5
 h11==0.16.0
 idna==3.18
 importlib_resources==7.1.0
