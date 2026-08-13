@@ -4,7 +4,7 @@ bottle==0.13.4
 bottle-websocket==0.2.9
 certifi==2026.7.22
 cffi==2.1.1
-charset-normalizer==3.4.9
+charset-normalizer==3.5.0
 click==8.4.2
 cryptography==50.0.0
 customtkinter==6.0.0
