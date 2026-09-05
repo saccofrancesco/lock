@@ -1,0 +1,23 @@
+{
+	"app": {
+		"name": "lock",
+		"version": "1.1.2",
+		"entryPoint": "main.py",
+		"icon": "assets/icon/logo.png",
+		"iconSize": "1000x1000"
+	},
+	"desktopEntry": {
+		"Name": "Lock",
+		"Comment": "A Local UI-Based Password Manager"
+	},
+	"documentationFiles": [
+		"LICENSE",
+		"README.md"
+	],
+	"deb": {
+		"depends": "python3-pil, python3-pil.imagetk, python3-cryptography",
+		"description": "A Local UI-Based Password Manager"
+	},
+	"rpm": {},
+	"rpmRequires": {}
+}
