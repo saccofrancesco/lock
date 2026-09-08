@@ -22,7 +22,8 @@
 		"ctkdeb.json",
 		"requirements.txt",
 		".gitignore",
-		".python-version"
+		".python-version",
+		"assets/img/usage.gif"
 	],
 	"deb": {
 		"depends": "python3-pil, python3-pil.imagetk, python3-cryptography",
