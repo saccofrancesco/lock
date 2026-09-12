@@ -15,20 +15,22 @@
 	"documentationFiles": [],
 	"excluded": [
 		".git",
-		".github",
-		"CODE_OF_CONDUCT.md",
-		"CONTRIBUTING.md",
-		"SECURITY.md",
-		"ctkdeb.json",
-		"requirements.txt",
-		".gitignore",
-		".python-version",
 		"assets/img/usage.gif"
 	],
 	"deb": {
+		"section": "security",
 		"depends": "python3-pil, python3-pil.imagetk, python3-cryptography",
 		"description": "A Local UI-Based Password Manager"
 	},
-	"rpm": {},
-	"rpmRequires": {}
+	"rpm": {
+		"summary": "A Local UI-Based Password Manager",
+		"license": "MIT",
+		"url": "https://github.com/saccofrancesco/lock",
+		"description": "Lock is a local password manager with a sleek CustomTkinter GUI."
+	},
+	"rpmRequires": {
+		"fedora": "python3-pillow python3-pillow-tk python3-cryptography",
+		"mageia": "python3-pillow python3-pillow-tk python3-cryptography",
+		"openmandriva": "python-imaging python-cryptography"
+	}
 }
