@@ -1,23 +1,36 @@
 {
 	"app": {
-		"name": "lock",
+		"name": "lock-password-manager",
 		"version": "1.1.2",
 		"entryPoint": "main.py",
-		"icon": "assets/icon/logo.png",
-		"iconSize": "1000x1000"
+		"icon": "assets/icon/logo-packaging.png",
+		"iconSize": "512x512"
 	},
 	"desktopEntry": {
 		"Name": "Lock",
-		"Comment": "A Local UI-Based Password Manager"
+		"Comment": "A Local UI-Based Password Manager",
+		"Categories": "Application;Utility;",
+		"Comment[uk]": "Локальний, базований на UI менеджер паролів"
 	},
-	"documentationFiles": [
-		"LICENSE",
-		"README.md"
+	"documentationFiles": [],
+	"excluded": [
+		".git",
+		"assets/img/usage.gif"
 	],
 	"deb": {
+		"section": "security",
 		"depends": "python3-pil, python3-pil.imagetk, python3-cryptography",
 		"description": "A Local UI-Based Password Manager"
 	},
-	"rpm": {},
-	"rpmRequires": {}
+	"rpm": {
+		"summary": "A Local UI-Based Password Manager",
+		"license": "MIT",
+		"url": "https://github.com/saccofrancesco/lock",
+		"description": "Lock is a local password manager with a sleek CustomTkinter GUI."
+	},
+	"rpmRequires": {
+		"fedora": "python3-pillow python3-pillow-tk python3-cryptography",
+		"mageia": "python3-pillow python3-pillow-tk python3-cryptography",
+		"openmandriva": "python-imaging python-cryptography"
+	}
 }
